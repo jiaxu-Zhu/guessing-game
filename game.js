@@ -100,7 +100,7 @@ class GuessingGame {
         
         // 版本信息
         this.version = {
-            number: "v1.0.9",
+            number: "v1.0.10",
             date: "2026-03-08",
             changes: [
                 "✨ 初始版本发布",
@@ -453,6 +453,14 @@ class GuessingGame {
             this.createConfetti();
         } else {
             this.ui.resultMessage.textContent = `正确答案是：${this.getAnswerText()}`;
+        
+        // 添加分享按钮
+        const shareBtn = document.querySelector(".share-btn");
+        if (shareBtn) shareBtn.remove();
+        document.querySelector(".result-actions").insertAdjacentHTML("beforeend", '
+        <button class="btn share-btn" onclick="game.shareResult()">
+            📤 分享成绩
+        </button>');
         }
     }
     
@@ -540,6 +548,33 @@ class GuessingGame {
         document.getElementById('versionModal').classList.add('active');
     }
     
+
+    shareResult() {
+        const score = this.ui.resultScore.textContent;
+        const mode = this.modes[this.currentMode].name;
+        const time = this.ui.timerDisplay.textContent;
+        const attempts = this.attempts;
+        
+        const text = `🎮 猜谜大师
+
+我在【${mode}】中获得了 ${score} 分！
+用时：${time}，尝试次数：${attempts}
+来挑战我吧！`;
+        
+        if (navigator.share) {
+            navigator.share({
+                title: '猜谜大师 - 我的成绩',
+                text: text,
+                url: window.location.href
+            }).catch(console.error);
+        } else {
+            // 复制到剪贴板
+            navigator.clipboard.writeText(text).then(() => {
+                alert('成绩已复制到剪贴板！');
+            });
+        }
+    }
+
     closeVersionInfo() {
         document.getElementById('versionModal').classList.remove('active');
     }
