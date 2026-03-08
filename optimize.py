@@ -49,12 +49,12 @@ def update_version_in_files(new_version):
 def apply_random_optimization():
     """应用随机优化（每次运行选择一种优化）"""
     optimizations = [
-        optimize_colors,
-        improve_responsiveness,
-        add_accessibility,
-        enhance_animations,
-        optimize_performance,
-        add_visual_effects
+        optimize_colors,            # 优化配色方案
+        improve_responsiveness,     # 改进响应式设计
+        add_accessibility,          # 添加无障碍功能
+        enhance_animations,         # 增强动画效果
+        optimize_performance,       # 性能优化
+        add_visual_effects,         # 添加视觉效果
     ]
     chosen = random.choice(optimizations)
     return chosen()
