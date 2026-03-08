@@ -100,7 +100,7 @@ class GuessingGame {
         
         // 版本信息
         this.version = {
-            number: "v1.0.10",
+            number: "v1.0.11",
             date: "2026-03-08",
             changes: [
                 "✨ 初始版本发布",
@@ -122,6 +122,21 @@ class GuessingGame {
         this.createParticles();
     }
     
+    loadTheme();
+    
+    toggleTheme() {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('guessingGameTheme', next);
+    }
+    
+    loadTheme() {
+        const saved = localStorage.getItem('guessingGameTheme');
+        if (saved) {
+            document.documentElement.setAttribute('data-theme', saved);
+        }
+    }
     initUI() {
         // 获取UI元素
         this.ui = {
