@@ -99,8 +99,9 @@ class GuessingGame {
         };
         
         // 版本信息
+        this.initSounds();
         this.version = {
-            number: "v1.0.11",
+            number: "v1.0.12",
             date: "2026-03-08",
             changes: [
                 "✨ 初始版本发布",
@@ -290,6 +291,7 @@ class GuessingGame {
         
         // 聚焦输入框
         this.ui.guessInput.focus();
+        this.playSound('click');
     }
     
     startTimer() {
@@ -588,6 +590,44 @@ class GuessingGame {
                 alert('成绩已复制到剪贴板！');
             });
         }
+    }
+
+
+    initSounds() {
+        // 使用 Web Audio API 创建简单音效
+        this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        this.playSound = (type) => {
+            if (!this.audioContext) return;
+            
+            const oscillator = this.audioContext.createOscillator();
+            const gainNode = this.audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(this.audioContext.destination);
+            
+            switch(type) {
+                case 'click':
+                    oscillator.frequency.value = 800;
+                    gainNode.gain.value = 0.1;
+                    break;
+                case 'correct':
+                    oscillator.frequency.value = 523.25; // C5
+                    gainNode.gain.value = 0.2;
+                    break;
+                case 'wrong':
+                    oscillator.frequency.value = 200;
+                    gainNode.gain.value = 0.15;
+                    break;
+                case 'win':
+                    oscillator.frequency.value = 659.25; // E5
+                    gainNode.gain.value = 0.3;
+                    break;
+            }
+            
+            oscillator.start();
+            oscillator.stop(this.audioContext.currentTime + 0.1);
+        };
     }
 
     closeVersionInfo() {
