@@ -36,7 +36,25 @@ def save_state(state):
         json.dump(state, f, indent=2, ensure_ascii=False)
 
 def get_current_version():
-    """从 game.js 获取当前版本号"""
+    """从 git tag 获取当前版本号"""
+    try:
+        result = subprocess.run(["git", "tag", "-l"], check=True, capture_output=True, text=True)
+        tags = result.stdout.strip().split('\n')
+        if tags and tags[0]:
+            # 按版本号排序，获取最新的
+            from functools import cmp_to_key
+            def compare_versions(v1, v2):
+                parts1 = [int(p) for p in v1.lstrip('v').split('.')]
+                parts2 = [int(p) for p in v2.lstrip('v').split('.')]
+                for p1, p2 in zip(parts1, parts2):
+                    if p1 != p2:
+                        return p1 - p2
+                return len(parts1) - len(parts2)
+            tags.sort(key=cmp_to_key(compare_versions))
+            return tags[-1]
+    except:
+        pass
+    # 回退：从 game.js 获取
     with open("game.js", "r", encoding="utf-8") as f:
         content = f.read()
     match = re.search(r'number:\s*"([^"]+)"', content)
