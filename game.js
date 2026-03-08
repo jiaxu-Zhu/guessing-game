@@ -99,7 +99,7 @@ class GuessingGame {
         
         // 版本信息
         this.version = {
-            number: "v1.0.3",
+            number: "v1.0.4",
             date: "2026-03-08",
             changes: [
                 "✨ 初始版本发布",
