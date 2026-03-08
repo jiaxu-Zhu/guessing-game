@@ -183,7 +183,7 @@ def apply_quick_optimization(opt_type):
                 f.write(css)
             return "添加按钮过渡效果"
     
-    return "无操作"
+    return None
 
 def main():
     print(f"⚡ 每分钟智能优化 - {datetime.now().strftime('%H:%M:%S')}")
@@ -203,7 +203,7 @@ def main():
         result = apply_quick_optimization(opt_type)
         state['pending_optimizations'].append({
             'type': opt_type,
-            'description': result or description,
+            'description': result,
             'timestamp': datetime.now().isoformat()
         })
         print(f"✨ 应用优化: {result or description}")
