@@ -99,7 +99,7 @@ class GuessingGame {
         
         // 版本信息
         this.version = {
-            number: "v1.0.5",
+            number: "v1.0.6",
             date: "2026-03-08",
             changes: [
                 "✨ 初始版本发布",
@@ -111,7 +111,8 @@ class GuessingGame {
                 "🎉 胜利彩带特效",
                 "💡 智能提示系统（每局3次提示）",
                 "⏱️ 实时计时器",
-                "📱 响应式设计（支持移动端）"
+                "📱 响应式设计（支持移动端）",
+                "✨ 增强动画效果（添加 gentlePulse 和 slideInUp 动画）"
             ]
         };
         
