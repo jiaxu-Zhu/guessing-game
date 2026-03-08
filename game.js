@@ -1,6 +1,7 @@
 /* 🎮 猜谜大师 - 游戏逻辑 */
 
 class GuessingGame {
+    // 性能优化：事件处理建议使用节流
     constructor() {
         this.modes = {
             number: {
@@ -99,7 +100,7 @@ class GuessingGame {
         
         // 版本信息
         this.version = {
-            number: "v1.0.6",
+            number: "v1.0.8",
             date: "2026-03-08",
             changes: [
                 "✨ 初始版本发布",
