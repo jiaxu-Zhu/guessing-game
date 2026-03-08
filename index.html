@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 猜谜大师 - 趣味猜谜游戏</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- 主菜单 -->
+        <div id="mainMenu" class="screen active">
+            <div class="header">
+                <h1 class="game-title">🎯 猜谜大师</h1>
+                <p class="subtitle">挑战你的智慧与直觉</p>
+            </div>
+            
+            <div class="menu-content">
+                <div class="mode-selection">
+                    <h2>选择游戏模式</h2>
+                    <div class="mode-cards">
+                        <div class="mode-card" data-mode="number">
+                            <div class="mode-icon">🔢</div>
+                            <h3>数字猜猜乐</h3>
+                            <p>猜一个 1-100 之间的数字</p>
+                            <div class="mode-difficulty">难度：⭐⭐</div>
+                        </div>
+                        
+                        <div class="mode-card" data-mode="word">
+                            <div class="mode-icon">📝</div>
+                            <h3>词语猜猜猜</h3>
+                            <p>根据提示猜词语</p>
+                            <div class="mode-difficulty">难度：⭐⭐⭐</div>
+                        </div>
+                        
+                        <div class="mode-card" data-mode="animal">
+                            <div class="mode-icon">🐾</div>
+                            <h3>动物猜猜看</h3>
+                            <p>猜动物名称</p>
+                            <div class="mode-difficulty">难度：⭐⭐⭐</div>
+                        </div>
+                        
+                        <div class="mode-card" data-mode="emoji">
+                            <div class="mode-icon">😊</div>
+                            <h3>表情猜成语</h3>
+                            <p>通过 emoji 猜成语</p>
+                            <div class="mode-difficulty">难度：⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stats-preview">
+                    <h3>🏆 我的成就</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-value" id="totalGames">0</span>
+                            <span class="stat-label">总游戏次数</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="totalWins">0</span>
+                            <span class="stat-label">获胜次数</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="winRate">0%</span>
+                            <span class="stat-label">胜率</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="bestStreak">0</span>
+                            <span class="stat-label">最高连胜</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 游戏界面 -->
+        <div id="gameScreen" class="screen">
+            <div class="game-header">
+                <button class="back-btn" onclick="game.showMainMenu()">← 返回</button>
+                <div class="game-info">
+                    <span class="mode-name" id="currentMode">数字猜猜乐</span>
+                    <span class="attempt-count">剩余次数：<span id="attemptsLeft">7</span></span>
+                </div>
+                <div class="timer">
+                    <span class="timer-icon">⏱️</span>
+                    <span id="timerDisplay">00:00</span>
+                </div>
+            </div>
+            
+            <div class="game-content">
+                <div class="hint-section">
+                    <div class="hint-card">
+                        <div class="hint-icon">💡</div>
+                        <div class="hint-text" id="hintText">请输入你的猜测...</div>
+                        <button class="hint-btn" onclick="game.useHint()">
+                            <span>💡</span> 使用提示 (<span id="hintsLeft">3</span>)
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="input-section">
+                    <div class="input-group">
+                        <input type="text" id="guessInput" class="guess-input" 
+                               placeholder="输入你的答案..." autocomplete="off">
+                        <button class="submit-btn" onclick="game.submitGuess()">
+                            提交
+                        </button>
+                    </div>
+                    <div class="quick-numbers" id="quickNumbers"></div>
+                </div>
+                
+                <div class="feedback-section">
+                    <div class="feedback-history" id="feedbackHistory"></div>
+                </div>
+                
+                <div class="progress-section">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span>游戏进度</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 游戏结束界面 -->
+        <div id="gameOverScreen" class="screen">
+            <div class="result-card">
+                <div class="result-icon" id="resultIcon">🎉</div>
+                <h2 class="result-title" id="resultTitle">恭喜获胜！</h2>
+                <div class="result-stats">
+                    <div class="result-stat">
+                        <span class="stat-label">用时</span>
+                        <span class="stat-value" id="resultTime">00:00</span>
+                    </div>
+                    <div class="result-stat">
+                        <span class="stat-label">猜测次数</span>
+                        <span class="stat-value" id="resultAttempts">0</span>
+                    </div>
+                    <div class="result-stat">
+                        <span class="stat-label">得分</span>
+                        <span class="stat-value" id="resultScore">0</span>
+                    </div>
+                </div>
+                <div class="result-message" id="resultMessage"></div>
+                <div class="result-actions">
+                    <button class="action-btn primary" onclick="game.restartGame()">
+                        🔄 再来一局
+                    </button>
+                    <button class="action-btn secondary" onclick="game.showMainMenu()">
+                        🏠 返回主页
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 成就弹窗 -->
+        <div id="achievementModal" class="modal">
+            <div class="modal-content achievement-content">
+                <div class="modal-header">
+                    <h3>🏅 解锁成就</h3>
+                    <button class="close-btn" onclick="game.closeAchievement()">×</button>
+                </div>
+                <div class="achievement-body">
+                    <div class="achievement-icon">🎯</div>
+                    <h4 id="achievementTitle">神机妙算</h4>
+                    <p id="achievementDesc">连续 5 次猜中答案</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>
