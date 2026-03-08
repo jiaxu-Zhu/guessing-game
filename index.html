@@ -8,6 +8,45 @@
 </head>
 <body>
     <div class="game-container">
+        <!-- 版本信息按钮 -->
+        <button class="version-btn" onclick="game.showVersionInfo()">
+            <span class="version-icon">ℹ️</span>
+            <span class="version-text">v1.0.1</span>
+        </button>
+        
+        <!-- 版本信息模态框 -->
+        <div id="versionModal" class="modal">
+            <div class="modal-content version-content">
+                <div class="modal-header">
+                    <h3>📋 版本信息</h3>
+                    <button class="close-btn" onclick="game.closeVersionInfo()">×</button>
+                </div>
+                <div class="version-body">
+                    <div class="version-row">
+                        <span class="version-label">当前版本</span>
+                        <span class="version-value" id="versionNumber">v1.0.0</span>
+                    </div>
+                    <div class="version-row">
+                        <span class="version-label">更新时间</span>
+                        <span class="version-value" id="versionDate">2026-03-08</span>
+                    </div>
+                    <div class="version-divider"></div>
+                    <div class="version-changes">
+                        <h4>📝 更新内容</h4>
+                        <ul id="versionChangesList">
+                            <li>✨ 初始版本发布</li>
+                            <li>🎮 支持4种游戏模式</li>
+                            <li>🏆 成就系统</li>
+                            <li>📊 统计追踪</li>
+                            <li>🎨 精美界面设计</li>
+                            <li>✨ 粒子背景动画</li>
+                            <li>🎉 胜利彩带效果</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <!-- 主菜单 -->
         <div id="mainMenu" class="screen active">
             <div class="header">

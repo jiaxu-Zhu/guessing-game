@@ -97,6 +97,24 @@ class GuessingGame {
             bestStreak: 0
         };
         
+        // 版本信息
+        this.version = {
+            number: "v1.0.1",
+            date: "2026-03-08",
+            changes: [
+                "✨ 初始版本发布",
+                "🎮 支持4种游戏模式（数字、词语、动物、表情猜成语）",
+                "🏆 成就系统（连胜奖励）",
+                "📊 完整统计追踪（游戏次数、胜率、最高连胜）",
+                "🎨 精美渐变界面设计",
+                "✨ 动态粒子背景动画",
+                "🎉 胜利彩带特效",
+                "💡 智能提示系统（每局3次提示）",
+                "⏱️ 实时计时器",
+                "📱 响应式设计（支持移动端）"
+            ]
+        };
+        
         this.loadStats();
         this.initUI();
         this.createParticles();
@@ -500,6 +518,28 @@ class GuessingGame {
     
     closeAchievement() {
         this.ui.achievementModal.classList.remove('active');
+    }
+    
+    showVersionInfo() {
+        // 填充版本信息
+        document.getElementById('versionNumber').textContent = this.version.number;
+        document.getElementById('versionDate').textContent = this.version.date;
+        
+        const changesList = document.getElementById('versionChangesList');
+        changesList.innerHTML = '';
+        
+        this.version.changes.forEach(change => {
+            const li = document.createElement('li');
+            li.textContent = change;
+            changesList.appendChild(li);
+        });
+        
+        // 显示模态框
+        document.getElementById('versionModal').classList.add('active');
+    }
+    
+    closeVersionInfo() {
+        document.getElementById('versionModal').classList.remove('active');
     }
 }
 
