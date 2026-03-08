@@ -1,5 +1,11 @@
 {
-  "pending_optimizations": [],
-  "last_commit_version": "v1.0.45",
-  "consecutive_runs": 0
+  "pending_optimizations": [
+    {
+      "type": "add_mode_hint",
+      "description": "增强模式描述",
+      "timestamp": "2026-03-08T16:12:20.815798"
+    }
+  ],
+  "last_commit_version": "v1.0.46",
+  "consecutive_runs": 1
 }
