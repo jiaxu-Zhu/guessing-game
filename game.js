@@ -6,6 +6,7 @@ class GuessingGame {
             number: {
                 name: "数字猜猜乐",
                 description: "猜一个 1-100 之间的数字",
+                hint: "💡 提示：输入数字，系统会告诉你'太大了'或'太小了'",
                 difficulty: 2,
                 generate: () => Math.floor(Math.random() * 100) + 1,
                 validate: (guess, answer) => {
@@ -22,6 +23,7 @@ class GuessingGame {
             word: {
                 name: "词语猜猜猜",
                 description: "根据提示猜词语",
+                hint: "💡 提示：仔细阅读描述，联想相关词语",
                 difficulty: 3,
                 words: [
                     { word: "太阳", hint: "每天从东方升起，给地球带来光明和温暖" },
@@ -42,6 +44,7 @@ class GuessingGame {
             animal: {
                 name: "动物猜猜看",
                 description: "猜动物名称",
+                hint: "💡 提示：根据第一个提示开始猜测",
                 difficulty: 3,
                 animals: [
                     { name: "狮子", hints: ["草原之王", "有鬃毛", "猫科动物"] },
@@ -62,6 +65,7 @@ class GuessingGame {
             emoji: {
                 name: "表情猜成语",
                 description: "通过 emoji 猜成语",
+                hint: "💡 提示：观察表情符号，联想对应的四字成语",
                 difficulty: 4,
                 idioms: [
                     { idiom: "画蛇添足", emoji: "🎨🐍➕🦶" },

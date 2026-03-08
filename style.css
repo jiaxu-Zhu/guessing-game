@@ -265,6 +265,15 @@ body {
     font-size: 0.95rem;
 }
 
+.mode-hint {
+    font-size: 0.85rem !important;
+    color: #6c5ce7 !important;
+    margin-bottom: 12px !important;
+    font-style: italic;
+    opacity: 0.9;
+    font-weight: 600 !important;
+}
+
 .mode-difficulty {
     color: var(--warning);
     font-size: 0.9rem;
