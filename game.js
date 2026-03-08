@@ -362,7 +362,7 @@ class GuessingGame {
         // 版本信息
         this.initSounds();
         this.version = {
-            number: "v1.0.31",
+            number: "v1.0.32",
             date: "2026-03-08",
             changes: [
                 "✨ 初始版本发布",
