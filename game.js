@@ -183,11 +183,10 @@ class GuessingGame {
     }
     
     createParticles() {
-        const particlesContainer = document.createElement('div');
-        particlesContainer.className = 'particles';
-        document.body.appendChild(particlesContainer);
+        const particlesContainer = document.getElementById('particles');
+        if (!particlesContainer) return;
         
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 50; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
             
@@ -197,7 +196,7 @@ class GuessingGame {
             particle.style.animationDuration = `${10 + Math.random() * 15}s`;
             
             // 随机大小
-            const size = 2 + Math.random() * 3;
+            const size = 2 + Math.random() * 6;
             particle.style.width = `${size}px`;
             particle.style.height = `${size}px`;
             
