@@ -1,6 +1,7 @@
 /* 🎮 猜谜大师 - 游戏逻辑 */
 
 class GuessingGame {
+    // 性能优化：使用事件委托减少事件监听器数量
     constructor() {
         this.modes = {
             number: {
