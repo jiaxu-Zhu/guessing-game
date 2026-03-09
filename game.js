@@ -418,7 +418,10 @@ class GuessingGame {
         const particlesContainer = document.getElementById('particles');
         if (!particlesContainer) return;
         
-        for (let i = 0; i < 50; i++) {
+        // 二次元樱花效果
+        const sakuraEmojis = ['🌸', '💮', '🌺', '✨'];
+        
+        for (let i = 0; i < 30; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
             
@@ -427,14 +430,8 @@ class GuessingGame {
             particle.style.animationDelay = `${Math.random() * 20}s`;
             particle.style.animationDuration = `${10 + Math.random() * 15}s`;
             
-            // 随机大小
-            const size = 2 + Math.random() * 6;
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            
-            // 随机颜色
-            const colors = ['#667eea', '#ec4899', '#10b981', '#f59e0b', '#3b82f6'];
-            particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            // 设置樱花 emoji
+            particle.textContent = sakuraEmojis[Math.floor(Math.random() * sakuraEmojis.length)];
             
             particlesContainer.appendChild(particle);
         }
@@ -690,7 +687,8 @@ class GuessingGame {
     }
     
     createConfetti() {
-        const colors = ['#667eea', '#ec4899', '#10b981', '#f59e0b', '#3b82f6'];
+        // 二次元可爱风格彩带颜色
+        const colors = ['#ff66b2', '#ff3399', '#ff99cc', '#ffcc00', '#66cc66'];
         
         for (let i = 0; i < 100; i++) {
             const confetti = document.createElement('div');
