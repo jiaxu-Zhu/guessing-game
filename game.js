@@ -617,6 +617,10 @@ class GuessingGame {
         }
         
         this.saveStats();
+
+        // 保存到排行榜
+        this.saveToLeaderboard(totalScore, isWin);
+    
         this.updateStatsUI();
         
         // 显示游戏结束界面
@@ -750,6 +754,30 @@ class GuessingGame {
                 alert('成绩已复制到剪贴板！');
             });
         }
+    }
+
+
+    saveToLeaderboard(score, isWin) {
+        if (!isWin) return;
+        
+        const entry = {
+            score: score,
+            mode: this.currentMode,
+            difficulty: this.difficulty,
+            attempts: this.attempts,
+            time: Date.now() - this.startTime,
+            date: new Date().toISOString()
+        };
+        
+        let leaderboard = JSON.parse(localStorage.getItem('guessingGameLeaderboard') || '[]');
+        leaderboard.push(entry);
+        leaderboard.sort((a, b) => b.score - a.score);
+        leaderboard = leaderboard.slice(0, 10); // 只保留前10名
+        localStorage.setItem('guessingGameLeaderboard', JSON.stringify(leaderboard));
+    }
+    
+    getLeaderboard() {
+        return JSON.parse(localStorage.getItem('guessingGameLeaderboard') || '[]');
     }
 
     closeVersionInfo() {

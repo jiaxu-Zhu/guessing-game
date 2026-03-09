@@ -15,10 +15,10 @@ PROJECT_PATH = "/root/.nanobot/workspace/guessing-game"
 os.chdir(PROJECT_PATH)
 
 def get_current_version():
-    """从 game.js 获取当前版本号"""
-    with open("game.js", "r", encoding="utf-8") as f:
+    """从 index.html 获取当前版本号"""
+    with open("index.html", "r", encoding="utf-8") as f:
         content = f.read()
-    match = re.search(r'number:\s*"([^"]+)"', content)
+    match = re.search(r'<span class="version-text">([^<]+)</span>', content)
     if match:
         return match.group(1)
     return "v1.0.0"
@@ -817,13 +817,6 @@ def enhance_colors():
 
 def update_version_in_files(new_version):
     """在所有文件中更新版本号"""
-    # 更新 game.js
-    with open("game.js", "r", encoding="utf-8") as f:
-        content = f.read()
-    content = re.sub(r'number:\s*"[^"]+"', f'number: "{new_version}"', content)
-    with open("game.js", "w", encoding="utf-8") as f:
-        f.write(content)
-    
     # 更新 index.html
     with open("index.html", "r", encoding="utf-8") as f:
         content = f.read()
