@@ -370,7 +370,27 @@ class GuessingGame {
         if (savedStats) {
             const parsed = JSON.parse(savedStats);
             // 合并默认统计，避免旧数据缺失字段
-            this.stats = { ...this.stats, ...parsed };
+            this.stats = {
+            totalGames: 0,
+            totalWins: 0,
+            winStreak: 0,
+            bestStreak: 0,
+            totalAttempts: 0,
+            totalTime: 0,
+            avgTime: 0,
+            avgAttempts: 0,
+            modeStats: {
+                number: { games: 0, wins: 0 },
+                word: { games: 0, wins: 0 },
+                animal: { games: 0, wins: 0 },
+                emoji: { games: 0, wins: 0 }
+            },
+            difficultyStats: {
+                easy: { games: 0, wins: 0 },
+                medium: { games: 0, wins: 0 },
+                hard: { games: 0, wins: 0 }
+            }
+        };
             // 确保嵌套对象存在
             if (!this.stats.modeStats) this.stats.modeStats = {};
             if (!this.stats.difficultyStats) this.stats.difficultyStats = {};
