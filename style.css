@@ -32,6 +32,14 @@
     --text-secondary: #ff99cc;
 }
 
+[data-theme="dark"] {
+    --bg-primary: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    --bg-secondary: #0f3460;
+    --bg-card: #1a1a2e;
+    --text-primary: #e94560;
+    --text-secondary: #ff99cc;
+}
+
 * {
     margin: 0;
     padding: 0;
