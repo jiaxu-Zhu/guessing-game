@@ -103,40 +103,28 @@ body {
     flex-direction: column;
 }
 
-/* 顶部版本信息条 */
-.top-version-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    padding: 8px 20px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 2px solid var(--primary);
-    display: flex;
-    justify-content: flex-end;
-}
-
-.version-btn-top {
+/* 标题上方的版本按钮 */
+.version-btn-above-title {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: rgba(255, 102, 178, 0.1);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
     border: 2px solid var(--primary);
     border-radius: 20px;
-    padding: 5px 12px;
+    padding: 6px 12px;
     cursor: pointer;
     font-size: 0.8rem;
+    margin-bottom: 10px;
     box-shadow: 0 2px 10px rgba(255, 102, 178, 0.2);
     transition: all 0.3s ease;
     outline: none !important;
     -webkit-tap-highlight-color: transparent;
 }
 
-.version-btn-top:hover {
-    background: rgba(255, 102, 178, 0.2);
+.version-btn-above-title:hover {
     transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(255, 102, 178, 0.3);
 }
 
 /* 版本信息按钮 */
@@ -1091,16 +1079,6 @@ body {
     
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
-    }
-    
-    /* 移动端顶部版本条 */
-    .top-version-bar {
-        padding: 5px 10px;
-    }
-    
-    .version-btn-top {
-        font-size: 0.7rem;
-        padding: 4px 8px;
     }
     
     .version-text {

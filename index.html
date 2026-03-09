@@ -10,14 +10,6 @@
     <!-- 粒子背景 -->
     <div class="particles" id="particles"></div>
     
-    <!-- 顶部版本信息 -->
-    <div class="top-version-bar">
-        <button class="version-btn-top" aria-label="查看版本信息" onclick="game.showVersionInfo()">
-            <span class="version-icon">ℹ️</span>
-            <span class="version-text">v1.0.407</span>
-        </button>
-    </div>
-    
     <div class="game-container">
         
         <!-- 版本信息模态框 -->
@@ -54,6 +46,10 @@
         <!-- 主菜单 -->
         <div id="mainMenu" class="screen active">
             <div class="header">
+                <button class="version-btn-above-title" aria-label="查看版本信息" onclick="game.showVersionInfo()">
+                    <span class="version-icon">ℹ️</span>
+                    <span class="version-text">v1.0.407</span>
+                </button>
                 <h1 class="game-title">🎯 猜谜大师</h1>
                 <p class="subtitle">挑战你的智慧与直觉</p>
             </div>
