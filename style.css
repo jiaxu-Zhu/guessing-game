@@ -95,6 +95,21 @@ body {
     flex-direction: column;
 }
 
+/* 右上角按钮容器 */
+.game-container > .theme-btn,
+.game-container > .version-btn {
+    position: absolute;
+    top: 20px;
+}
+
+.game-container > .theme-btn {
+    right: 80px;
+}
+
+.game-container > .version-btn {
+    right: 20px;
+}
+
 /* 主题切换按钮 */
 .theme-btn, .version-btn {
     background: rgba(255, 255, 255, 0.95);
