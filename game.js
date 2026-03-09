@@ -336,6 +336,12 @@ class GuessingGame {
     hint: "💡 提示：观察表情符号，联想对应的四字成语",
     difficulty: 4,
     idioms: [
+    { idiom: "一鼓作气", emoji: "1️⃣🥁💨" },
+    { idiom: "一帆风顺", emoji: "1️⃣⛵✅" },
+    { idiom: "一路顺风", emoji: "1️⃣路顺风" },
+    { idiom: "一生一世", emoji: "1️⃣生 1️⃣世" },
+    { idiom: "一心一意", emoji: "1️⃣心 1️⃣意" },
+    { idiom: "一言为定", emoji: "1️⃣言定" },
     { idiom: "螳螂捕蝉", emoji: "🦗🐦" },
     { idiom: "金蝉脱壳", emoji: "🐛🪲" },
     { idiom: "蛛丝马迹", emoji: "🕷️🐎" },
