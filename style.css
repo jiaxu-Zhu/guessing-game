@@ -1,34 +1,35 @@
-/* 🎨 猜谜大师 - 精美现代风格界面样式 */
+/* 🌸 猜谜大师 - 二次元可爱风格界面样式 */
 
 :root {
-    --bg-primary: #0f0c29;
-    --bg-secondary: #302b63;
+    /* 二次元粉色主题配色 */
+    --bg-primary: #ffe6f2;
+    --bg-secondary: #ffcce6;
     --bg-card: #ffffff;
-    --text-primary: #2d3436;
-    --text-secondary: #636e72;
-    --primary: #6c5ce7;
-    --primary-dark: #5b4cdb;
-    --secondary: #a29bfe;
-    --success: #00b894;
-    --warning: #fdcb6e;
-    --danger: #ff7675;
-    --border-width: 2px;
-    --border-radius: 16px;
-    --shadow: 0 10px 40px rgba(108, 92, 231, 0.3);
-    --shadow-hover: 0 20px 60px rgba(108, 92, 231, 0.5);
+    --text-primary: #ff66b2;
+    --text-secondary: #ff99cc;
+    --primary: #ff66b2;
+    --primary-dark: #ff3399;
+    --secondary: #ffb3d9;
+    --success: #66cc66;
+    --warning: #ffcc00;
+    --danger: #ff6666;
+    --border-width: 3px;
+    --border-radius: 24px;
+    --shadow: 0 8px 32px rgba(255, 102, 178, 0.2);
+    --shadow-hover: 0 12px 48px rgba(255, 102, 178, 0.3);
 
-    --accent: #8b5cf6;
-    --highlight: #fbbf24;
-    --surface: rgba(30, 41, 59, 0.95);
-    --success-gradient: linear-gradient(135deg, #10b981, #3b82f6);
-    --warning-gradient: linear-gradient(135deg, #f59e0b, #ef4444);}
+    --accent: #ff99cc;
+    --highlight: #ffcc00;
+    --surface: rgba(255, 230, 242, 0.95);
+    --success-gradient: linear-gradient(135deg, #66cc66, #99dd99);
+    --warning-gradient: linear-gradient(135deg, #ffcc00, #ffdd66);}
 
 [data-theme="light"] {
-    --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --bg-secondary: #f0f2f5;
+    --bg-primary: linear-gradient(135deg, #ffe6f2 0%, #ffcce6 100%);
+    --bg-secondary: #fff0f7;
     --bg-card: #ffffff;
-    --text-primary: #2d3436;
-    --text-secondary: #636e72;
+    --text-primary: #ff66b2;
+    --text-secondary: #ff99cc;
 }
 
 * {
