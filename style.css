@@ -127,6 +127,31 @@ body {
     isolation: isolate;
 }
 
+/* 标题旁边的版本按钮 */
+.version-btn-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--primary);
+    border-radius: 20px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin-left: 15px;
+    vertical-align: middle;
+    box-shadow: 0 2px 10px rgba(255, 102, 178, 0.2);
+    transition: all 0.3s ease;
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.version-btn-inline:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(255, 102, 178, 0.3);
+}
+
 .theme-btn:focus, .version-btn:focus {
     outline: none !important;
     box-shadow: 0 4px 20px rgba(255, 102, 178, 0.3);
@@ -1057,13 +1082,12 @@ body {
         grid-template-columns: repeat(2, 1fr);
     }
     
-    /* 移动端版本按钮移到底部 */
-    .version-btn {
-        position: absolute;
-        bottom: 20px;
-        right: 20px;
-        padding: 10px 15px;
-        font-size: 0.85rem;
+    /* 移动端版本按钮样式 */
+    .version-btn-inline {
+        display: block;
+        margin: 10px 0 0 0;
+        font-size: 0.75rem;
+        padding: 5px 10px;
     }
     
     .version-text {
