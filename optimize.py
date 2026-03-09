@@ -835,8 +835,12 @@ def git_commit_and_push(version, optimization_desc):
     
     subprocess.run(["git", "push", "origin", "main"], check=True)
     
-    subprocess.run(["git", "tag", version], check=True)
-    subprocess.run(["git", "push", "origin", version], check=True)
+    # 尝试创建标签，如果已存在则强制更新
+    try:
+        subprocess.run(["git", "tag", "-f", version], check=True)
+        subprocess.run(["git", "push", "origin", "--force", "--tags"], check=True)
+    except subprocess.CalledProcessError:
+        print(f"⚠️  标签 {version} 更新失败，跳过标签操作")
 
 def main():
     print("🎮 开始智能优化猜谜游戏...")
