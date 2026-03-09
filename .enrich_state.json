@@ -4,10 +4,15 @@
       "type": "expand_word_bank",
       "description": "新增10道word题目",
       "timestamp": "2026-03-09T18:20:03.383630"
+    },
+    {
+      "type": "expand_idiom_bank",
+      "description": "新增10道idiom题目",
+      "timestamp": "2026-03-09T18:30:03.066863"
     }
   ],
   "last_commit_version": "v1.0.402",
-  "consecutive_runs": 1,
+  "consecutive_runs": 2,
   "last_optimization": {
     "timestamp": "2026-03-08T19:15:00",
     "changes": [
