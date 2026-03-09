@@ -1059,10 +1059,9 @@ body {
     
     /* 移动端版本按钮移到底部 */
     .version-btn {
-        position: fixed;
+        position: absolute;
         bottom: 20px;
         right: 20px;
-        top: auto;
         padding: 10px 15px;
         font-size: 0.85rem;
     }
