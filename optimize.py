@@ -82,7 +82,14 @@ def analyze_game_features():
     
     # 检测统计功能
     if 'stats' in js and ('totalGames' in js or 'totalWins' in js):
-        features['stats'] = ['games', 'wins', 'streak']
+        stats_features = []
+        if 'totalGames' in js: stats_features.append('games')
+        if 'totalWins' in js: stats_features.append('wins')
+        if 'winStreak' in js: stats_features.append('streak')
+        if 'totalAttempts' in js: stats_features.append('attempts')
+        if 'modeStats' in js: stats_features.append('modeStats')
+        if 'difficultyStats' in js: stats_features.append('difficultyStats')
+        features['stats'] = stats_features
     
     return features
 

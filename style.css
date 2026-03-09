@@ -16,7 +16,12 @@
     --border-radius: 16px;
     --shadow: 0 10px 40px rgba(108, 92, 231, 0.3);
     --shadow-hover: 0 20px 60px rgba(108, 92, 231, 0.5);
-}
+
+    --accent: #8b5cf6;
+    --highlight: #fbbf24;
+    --surface: rgba(30, 41, 59, 0.95);
+    --success-gradient: linear-gradient(135deg, #10b981, #3b82f6);
+    --warning-gradient: linear-gradient(135deg, #f59e0b, #ef4444);}
 
 [data-theme="light"] {
     --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
