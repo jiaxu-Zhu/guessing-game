@@ -123,7 +123,7 @@ class GuessingGame {
                 generate: function() {
                     return this.words[Math.floor(Math.random() * this.words.length)];
                 },
-                validate: (guess, answer) => {
+                validate: function(guess, answer) {
                     if (guess === answer.word) return { valid: true, hint: "恭喜猜中！", correct: true };
                     
                     return { valid: true, hint: "不对哦，再想想提示" };
@@ -191,7 +191,7 @@ class GuessingGame {
                 generate: function() {
                     return this.animals[Math.floor(Math.random() * this.animals.length)];
                 },
-                validate: (guess, answer) => {
+                validate: function(guess, answer) {
                     if (guess === answer.name) return { valid: true, hint: "恭喜猜中！", correct: true };
                     
                     return { valid: true, hint: "不对哦，再想想" };
@@ -265,7 +265,7 @@ class GuessingGame {
                 generate: function() {
                     return this.idioms[Math.floor(Math.random() * this.idioms.length)];
                 },
-                validate: (guess, answer) => {
+                validate: function(guess, answer) {
                     if (guess === answer.idiom) return { valid: true, hint: "恭喜猜中！", correct: true };
                     
                     return { valid: true, hint: "不对哦，再想想这些表情代表什么" };
