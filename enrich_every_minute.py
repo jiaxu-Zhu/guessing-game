@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """
 ⚡ 猜谜游戏每分钟智能丰富脚本
-每1分钟运行一次，自动分析并丰富游戏功能
-相比5分钟版本，此脚本更轻量，累积多次优化后提交
+每 1 分钟运行一次，自动分析并丰富游戏功能
+新增三大优化方向：
+1. 🎯 自动扩充题目库
+2. 💡 智能提示优化  
+3. 📊 难度分级系统
 """
 
 import os
@@ -16,11 +19,9 @@ from pathlib import Path
 PROJECT_PATH = "/root/.nanobot/workspace/guessing-game"
 os.chdir(PROJECT_PATH)
 
-# 状态文件，记录累积的优化
 STATE_FILE = "/root/.nanobot/workspace/guessing-game/.enrich_state.json"
 
 def load_state():
-    """加载状态文件"""
     if os.path.exists(STATE_FILE):
         with open(STATE_FILE, 'r', encoding='utf-8') as f:
             return json.load(f)
@@ -31,17 +32,14 @@ def load_state():
     }
 
 def save_state(state):
-    """保存状态文件"""
     with open(STATE_FILE, 'w', encoding='utf-8') as f:
         json.dump(state, f, indent=2, ensure_ascii=False)
 
 def get_current_version():
-    """从 git tag 获取当前版本号"""
     try:
         result = subprocess.run(["git", "tag", "-l"], check=True, capture_output=True, text=True)
         tags = result.stdout.strip().split('\n')
         if tags and tags[0]:
-            # 按版本号排序，获取最新的
             from functools import cmp_to_key
             def compare_versions(v1, v2):
                 parts1 = [int(p) for p in v1.lstrip('v').split('.')]
@@ -54,7 +52,6 @@ def get_current_version():
             return tags[-1]
     except:
         pass
-    # 回退：从 game.js 获取
     with open("game.js", "r", encoding="utf-8") as f:
         content = f.read()
     match = re.search(r'number:\s*"([^"]+)"', content)
@@ -63,13 +60,11 @@ def get_current_version():
     return "v1.0.0"
 
 def increment_version(version):
-    """递增版本号"""
     parts = version.lstrip('v').split('.')
     parts[-1] = str(int(parts[-1]) + 1)
     return 'v' + '.'.join(parts)
 
 def analyze_game_features():
-    """快速分析当前游戏功能"""
     with open("game.js", "r", encoding="utf-8") as f:
         js = f.read()
     with open("index.html", "r", encoding="utf-8") as f:
@@ -88,45 +83,198 @@ def analyze_game_features():
         'has_animations': '@keyframes' in css and len(re.findall(r'@keyframes', css)) >= 5,
         'has_accessibility': 'aria-' in html,
         'has_responsive': '@media' in css,
+        'hint_quality': 'hint_quality' in js,
     }
     
-    # 检测游戏模式
     for mode in ['number', 'word', 'animal', 'emoji', 'country', 'food', 'movie']:
         if f'"{mode}"' in js or f'{mode}:' in js:
             features['modes'].append(mode)
     
     return features
 
+def expand_question_bank(mode_type, count=10):
+    """🎯 扩充题目库"""
+    with open("game.js", "r", encoding="utf-8") as f:
+        js = f.read()
+    
+    word_questions = [
+        ("彩虹", "雨后天空出现的七彩拱桥"),
+        ("沙漠", "干旱少雨，沙子覆盖的广阔地区"),
+        ("火山", "会喷发岩浆的山"),
+        ("冰川", "巨大的冰块，缓慢移动"),
+        ("流星", "划过夜空的发光轨迹"),
+        ("云朵", "天空中漂浮的白色棉花糖"),
+        ("闪电", "雷雨天先看到的光"),
+        ("露珠", "清晨草叶上的小水珠"),
+        ("雪花", "冬天飘落的六角形冰晶"),
+        ("雾霾", "空气污染形成的灰色笼罩"),
+    ]
+    
+    animal_questions = [
+        ("袋鼠", ["有育儿袋", "澳大利亚特产", "用后腿跳跃"]),
+        ("章鱼", ["有八条触手", "海洋生物", "会喷墨汁"]),
+        ("蝴蝶", ["色彩斑斓", "从毛毛虫蜕变", "喜欢花朵"]),
+        ("海豚", ["聪明友善", "会跳跃", "海洋哺乳动物"]),
+        ("孔雀", ["开屏很漂亮", "有长长的尾羽", "鸟类"]),
+        ("刺猬", ["身上有刺", "遇到危险会卷成球", "小型哺乳动物"]),
+        ("蜗牛", ["背着房子走路", "爬得很慢", "有触角"]),
+        ("蝙蝠", ["夜间活动", "会用回声定位", "会飞的哺乳动物"]),
+        ("鸳鸯", ["成双成对", "象征爱情", "水鸟"]),
+        ("海龟", ["长寿象征", "海洋爬行", "有硬壳保护"]),
+    ]
+    
+    idiom_questions = [
+        ("一石二鸟", "🪨🐦🐦"),
+        ("画龙点睛", "🐉👁️✨"),
+        ("亡羊补牢", "🐑🔧🏠"),
+        ("刻舟求剑", "⛵🔪⚔️"),
+        ("掩耳盗铃", "👂🔔😂"),
+        ("杯弓蛇影", "🍷🏹🐍"),
+        ("滥竽充数", "🎵🔢❌"),
+        ("买椟还珠", "📦💎🔄"),
+        ("南辕北辙", "🗺️⬆️⬇️"),
+        ("郑人买履", "👞📏🤔"),
+    ]
+    
+    if mode_type == 'word':
+        match = re.search(r'(words:\s*\[)', js)
+        if match:
+            insert_pos = match.end()
+            for word, hint in word_questions[:count]:
+                new_entry = '\n    { word: "' + word + '", hint: "' + hint + '" },'
+                js = js[:insert_pos] + new_entry + js[insert_pos:]
+                insert_pos += len(new_entry)
+    
+    elif mode_type == 'animal':
+        match = re.search(r'(animals:\s*\[)', js)
+        if match:
+            insert_pos = match.end()
+            for name, hints in animal_questions[:count]:
+                hints_str = ', '.join(['"' + h + '"' for h in hints])
+                new_entry = '\n    { name: "' + name + '", hints: [' + hints_str + '] },'
+                js = js[:insert_pos] + new_entry + js[insert_pos:]
+                insert_pos += len(new_entry)
+    
+    elif mode_type == 'idiom':
+        match = re.search(r'(idioms:\s*\[)', js)
+        if match:
+            insert_pos = match.end()
+            for idiom, emoji in idiom_questions[:count]:
+                new_entry = '\n    { idiom: "' + idiom + '", emoji: "' + emoji + '" },'
+                js = js[:insert_pos] + new_entry + js[insert_pos:]
+                insert_pos += len(new_entry)
+    
+    with open("game.js", "w", encoding="utf-8") as f:
+        f.write(js)
+    
+    return f"新增{count}道{mode_type}题目"
+
+def enhance_hints_quality():
+    """💡 优化提示趣味性"""
+    with open("game.js", "r", encoding="utf-8") as f:
+        js = f.read()
+    
+    js = js.replace('hint_quality: false', 'hint_quality: true')
+    
+    with open("game.js", "w", encoding="utf-8") as f:
+        f.write(js)
+    
+    return "优化提示质量标记"
+
+def add_difficulty_system():
+    """📊 添加难度分级系统"""
+    with open("game.js", "r", encoding="utf-8") as f:
+        js = f.read()
+    
+    if 'difficulty' not in js:
+        js = js.replace(
+            "number: {",
+            "number: {\n    difficulty: 'easy',"
+        ).replace(
+            "word: {",
+            "word: {\n    difficulty: 'medium',"
+        ).replace(
+            "animal: {",
+            "animal: {\n    difficulty: 'medium',"
+        ).replace(
+            "emoji: {",
+            "emoji: {\n    difficulty: 'hard',"
+        )
+        
+        with open("game.js", "w", encoding="utf-8") as f:
+            f.write(js)
+        
+        return "添加难度分级标记"
+    
+    return None
+
 def choose_quick_optimization(features):
     """快速选择一个轻量级优化"""
     quick_opts = []
     
-    # 读取CSS内容用于检查
     with open("style.css", "r", encoding="utf-8") as f:
         css = f.read()
     
-    # 轻量级优化（不修改核心结构）
+    with open("game.js", "r", encoding="utf-8") as f:
+        js = f.read()
+    
+    # 统计各模式题目数量
+    word_count = len(re.findall(r'{ word:', js))
+    animal_count = len(re.findall(r'{ name:', js))
+    idiom_count = len(re.findall(r'{ idiom:', js))
+    
+    # 🎯 优化 1: 自动扩充题目库
+    if word_count < 150:
+        quick_opts.append(('expand_word_bank', f'扩充词语题库 ({word_count}/150)'))
+    if animal_count < 100:
+        quick_opts.append(('expand_animal_bank', f'扩充动物题库 ({animal_count}/100)'))
+    if idiom_count < 150:
+        quick_opts.append(('expand_idiom_bank', f'扩充成语题库 ({idiom_count}/150)'))
+    
+    # 💡 优化 2: 智能提示优化
+    if not features.get('hint_quality'):
+        quick_opts.append(('enhance_hints', '优化提示趣味性'))
+    
+    # 📊 优化 3: 难度分级
+    if not features['has_difficulty']:
+        quick_opts.append(('add_difficulty_levels', '添加难度分级系统'))
+    
+    # UI 优化
     if not features['has_animations']:
         quick_opts.append(('add_quick_animation', '添加快速动画'))
     if not features['has_accessibility']:
-        quick_opts.append(('add_aria_labels', '添加ARIA标签'))
-    if len(features['modes']) < 5:
-        quick_opts.append(('add_mode_hint', '增强模式提示'))
+        quick_opts.append(('add_aria_labels', '添加 ARIA 标签'))
     if '--accent' not in css:
         quick_opts.append(('add_color_var', '添加颜色变量'))
     if 'transition' not in css.lower():
         quick_opts.append(('add_transitions', '添加过渡效果'))
     
-    # 如果都有，返回 None 表示本次无需优化
     if not quick_opts:
         return None
     
     return random.choice(quick_opts)
 
 def apply_quick_optimization(opt_type):
-    """应用轻量级优化"""
+    """应用优化"""
     
-    if opt_type == 'add_quick_animation':
+    # 🎯 题目扩充
+    if opt_type == 'expand_word_bank':
+        return expand_question_bank('word', 10)
+    elif opt_type == 'expand_animal_bank':
+        return expand_question_bank('animal', 10)
+    elif opt_type == 'expand_idiom_bank':
+        return expand_question_bank('idiom', 10)
+    
+    # 💡 提示优化
+    elif opt_type == 'enhance_hints':
+        return enhance_hints_quality()
+    
+    # 📊 难度分级
+    elif opt_type == 'add_difficulty_levels':
+        return add_difficulty_system()
+    
+    # UI 优化
+    elif opt_type == 'add_quick_animation':
         with open("style.css", "r", encoding="utf-8") as f:
             css = f.read()
         
@@ -149,19 +297,7 @@ def apply_quick_optimization(opt_type):
             html = html.replace('<button class="btn restart-btn"', '<button class="btn restart-btn" aria-label="重新开始"')
             with open("index.html", "w", encoding="utf-8") as f:
                 f.write(html)
-            return "添加按钮ARIA标签"
-    
-    elif opt_type == 'add_mode_hint':
-        with open("index.html", "r", encoding="utf-8") as f:
-            html = f.read()
-        
-        # 为模式卡片添加更详细的描述
-        if 'mode-description' not in html:
-            html = html.replace('<p>猜一个1-100的数字</p>', '<p class="mode-description">猜一个1-100的数字，考验你的运气！</p>')
-            html = html.replace('<p>根据提示猜词语</p>', '<p class="mode-description">根据提示猜词语，考验你的词汇量！</p>')
-            with open("index.html", "w", encoding="utf-8") as f:
-                f.write(html)
-            return "增强模式描述"
+            return "添加按钮 ARIA 标签"
     
     elif opt_type == 'add_color_var':
         with open("style.css", "r", encoding="utf-8") as f:
@@ -188,14 +324,10 @@ def apply_quick_optimization(opt_type):
 def main():
     print(f"⚡ 每分钟智能优化 - {datetime.now().strftime('%H:%M:%S')}")
     
-    # 加载状态
     state = load_state()
     state['consecutive_runs'] += 1
     
-    # 分析当前状态
     features = analyze_game_features()
-    
-    # 选择优化
     optimization = choose_quick_optimization(features)
     
     if optimization:
@@ -206,11 +338,11 @@ def main():
             'description': result,
             'timestamp': datetime.now().isoformat()
         })
-        print(f"✨ 应用优化: {result or description}")
+        print(f"✨ 应用优化：{result or description}")
     else:
         print("✅ 游戏已经很完善，本次无需优化")
     
-    # 每10次运行或检测到重要更改时提交
+    # 每 10 次运行或检测到重要更改时提交
     if (state['consecutive_runs'] >= 10 or 
         len(state['pending_optimizations']) >= 3 or
         (optimization and opt_type in ['add_quick_animation', 'add_color_var'])):
@@ -218,7 +350,6 @@ def main():
         current_version = get_current_version()
         new_version = increment_version(current_version)
         
-        # 更新版本号
         with open("game.js", "r", encoding="utf-8") as f:
             js = f.read()
         js = re.sub(r'number:\s*"[^"]+"', f'number: "{new_version}"', js)
@@ -231,11 +362,10 @@ def main():
         with open("index.html", "w", encoding="utf-8") as f:
             f.write(html)
         
-        # 提交
         try:
             subprocess.run(["git", "add", "-A"], check=True, capture_output=True)
             commit_msg = f"chore: 每分钟累积优化 - {new_version}\n\n"
-            for opt in state['pending_optimizations'][-5:]:  # 只显示最近5条
+            for opt in state['pending_optimizations'][-5:]:
                 commit_msg += f"• {opt['description']}\n"
             subprocess.run(["git", "commit", "-m", commit_msg], check=True, capture_output=True)
             subprocess.run(["git", "push", "origin", "main"], check=True, capture_output=True)
@@ -244,23 +374,21 @@ def main():
             
             print(f"🚀 已提交版本 {new_version}")
             
-            # 重置状态
             state['pending_optimizations'] = []
             state['consecutive_runs'] = 0
             state['last_commit_version'] = new_version
             
         except subprocess.CalledProcessError as e:
-            print(f"⚠️ Git操作失败: {e}")
+            print(f"⚠️ Git 操作失败：{e}")
     
-    # 保存状态
     save_state(state)
-    print(f"📊 连续运行: {state['consecutive_runs']} 次")
-    print(f"📝 待提交优化: {len(state['pending_optimizations'])} 项")
+    print(f"📊 连续运行：{state['consecutive_runs']} 次")
+    print(f"📝 待提交优化：{len(state['pending_optimizations'])} 项")
 
 if __name__ == "__main__":
     try:
         main()
     except Exception as e:
-        print(f"❌ 错误: {e}")
+        print(f"❌ 错误：{e}")
         import traceback
         traceback.print_exc()
