@@ -40,7 +40,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    background: linear-gradient(135deg, #ffe6f2 0%, #ffcce6 50%, #ff99cc 100%);
     background-attachment: fixed;
     min-height: 100vh;
     color: var(--text-primary);
@@ -48,7 +48,7 @@ body {
     position: relative;
 }
 
-/* 粒子背景效果 */
+/* 樱花飘落背景效果 */
 .particles {
     position: fixed;
     top: 0;
@@ -62,26 +62,24 @@ body {
 
 .particle {
     position: absolute;
-    width: 8px;
-    height: 8px;
-    background: rgba(108, 92, 231, 0.4);
-    border-radius: 50%;
-    animation: float 15s infinite ease-in-out;
+    font-size: 20px;
+    animation: sakuraFall 15s infinite ease-in-out;
+    opacity: 0.7;
 }
 
-@keyframes float {
-    0%, 100% {
-        transform: translateY(100vh) rotate(0deg);
+@keyframes sakuraFall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg) translateX(0);
         opacity: 0;
     }
     10% {
-        opacity: 1;
+        opacity: 0.8;
     }
-    90% {
-        opacity: 1;
+    50% {
+        transform: translateY(50vh) rotate(180deg) translateX(50px);
     }
     100% {
-        transform: translateY(-100vh) rotate(720deg);
+        transform: translateY(110vh) rotate(360deg) translateX(-50px);
         opacity: 0;
     }
 }
@@ -101,19 +99,20 @@ body {
 .theme-btn, .version-btn {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    border: none;
+    border: 3px solid var(--primary);
     border-radius: 50px;
     padding: 12px 20px;
     cursor: pointer;
     font-size: 1.5rem;
     z-index: 100;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(255, 102, 178, 0.3);
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .theme-btn:hover, .version-btn:hover {
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 30px rgba(255, 102, 178, 0.5);
+    border-color: var(--primary-dark);
 }
 
 .theme-btn:active, .version-btn:active {
@@ -163,7 +162,7 @@ body {
 .game-title {
     font-size: 3.5rem;
     font-weight: 900;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    background: linear-gradient(135deg, #ff66b2 0%, #ff3399 50%, #ff99cc 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -176,16 +175,16 @@ body {
 
 @keyframes titleGlow {
     from {
-        filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
+        filter: drop-shadow(0 0 10px rgba(255, 102, 178, 0.5));
     }
     to {
-        filter: drop-shadow(0 0 20px rgba(118, 75, 162, 0.8));
+        filter: drop-shadow(0 0 20px rgba(255, 51, 153, 0.8));
     }
 }
 
 .subtitle {
     font-size: 1.2rem;
-    color: var(--bg-card);
+    color: var(--text-primary);
     font-weight: 600;
     letter-spacing: 2px;
 }
