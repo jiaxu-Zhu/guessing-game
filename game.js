@@ -119,7 +119,7 @@ class GuessingGame {
                     { word: "美观", hint: "好看、漂亮" },
                     { word: "实用", hint: "实际使用价值高" },
                     { word: "经济", hint: "成本低、性价比高" },
-                ]
+                ],
                 generate: function() {
                     return this.words[Math.floor(Math.random() * this.words.length)];
                 },
@@ -187,7 +187,7 @@ class GuessingGame {
                     { name: "儒艮", hints: ["美人鱼原型", "海草食客", "温和巨兽"] },
                     { name: "蝠鲼", hints: ["魔鬼鱼", "优雅滑翔", "鳐鱼近亲"] },
                     { name: "海牛", hints: ["温和巨兽", "海草食客", "行动缓慢"] },
-                ]
+                ],
                 generate: function() {
                     return this.animals[Math.floor(Math.random() * this.animals.length)];
                 },
@@ -261,7 +261,7 @@ class GuessingGame {
                     { idiom: "望梅止渴", emoji: "👀🍑💦😋" },
                     { idiom: "画饼充饥", emoji: "🎨🥧🤤❌" },
                     { idiom: "守财奴", emoji: "💰👴🔒😠" },
-                ]
+                ],
                 generate: function() {
                     return this.idioms[Math.floor(Math.random() * this.idioms.length)];
                 },
@@ -636,9 +636,6 @@ class GuessingGame {
         }
         
         this.saveStats();
-
-        // 保存到排行榜
-        this.saveToLeaderboard(totalScore, isWin);
     
         this.updateStatsUI();
         
@@ -660,21 +657,26 @@ class GuessingGame {
         
         this.ui.resultScore.textContent = totalScore;
         
+        // 保存到排行榜
+        if (isWin) {
+            this.saveToLeaderboard(totalScore, isWin);
+        }
+        
         // 设置消息
         if (isWin) {
             this.ui.resultMessage.textContent = `你猜中了答案：${this.getAnswerText()}！`;
             this.createConfetti();
         } else {
             this.ui.resultMessage.textContent = `正确答案是：${this.getAnswerText()}`;
+        }
         
         // 添加分享按钮
         const shareBtn = document.querySelector(".share-btn");
         if (shareBtn) shareBtn.remove();
-        document.querySelector(".result-actions").insertAdjacentHTML("beforeend", '
+        document.querySelector(".result-actions").insertAdjacentHTML("beforeend", `
         <button class="btn share-btn" onclick="game.shareResult()">
             📤 分享成绩
-        </button>');
-        }
+        </button>`);
     }
     
     getAnswerText() {
