@@ -116,13 +116,25 @@ def check_html_errors():
         with open("index.html", "r", encoding="utf-8") as f:
             html_content = f.read()
         
-        # 检查未闭合的标签
-        common_tags = ['div', 'span', 'p', 'button', 'input', 'script', 'style']
+        # 自闭合标签列表（不需要结束标签）
+        self_closing_tags = ['input', 'br', 'hr', 'img', 'meta', 'link', 'area', 'base', 'col', 'embed', 'param', 'source', 'track', 'wbr']
+        
+        # 检查非自闭合标签是否匹配
+        common_tags = ['div', 'span', 'p', 'button', 'input', 'script', 'style', 'header', 'footer', 'main', 'section', 'article', 'nav', 'ul', 'ol', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']
         for tag in common_tags:
-            open_count = len(re.findall(f'<{tag}(?:\\s[^>]*)?>', html_content))
-            close_count = len(re.findall(f'</{tag}>', html_content))
-            if open_count != close_count:
-                errors.append(f"HTML <{tag}> 标签不匹配: {open_count} vs {close_count}")
+            if tag in self_closing_tags:
+                # 对于自闭合标签，只检查开始标签是否存在，不检查结束标签
+                open_count = len(re.findall(f'<{tag}(?:\\s[^>]*)?>', html_content, re.IGNORECASE))
+                # 自闭合标签应该存在，但不应该有结束标签
+                close_count = len(re.findall(f'</{tag}>', html_content, re.IGNORECASE))
+                if close_count > 0:
+                    errors.append(f"HTML <{tag}> 不应有结束标签，但发现 {close_count} 个")
+            else:
+                # 对于普通标签，检查开始和结束标签是否匹配
+                open_count = len(re.findall(f'<{tag}(?:\\s[^>]*)?>', html_content, re.IGNORECASE))
+                close_count = len(re.findall(f'</{tag}>', html_content, re.IGNORECASE))
+                if open_count != close_count:
+                    errors.append(f"HTML <{tag}> 标签不匹配: {open_count} vs {close_count}")
         
         # 检查缺少 DOCTYPE
         if not html_content.upper().startswith('<!DOCTYPE'):

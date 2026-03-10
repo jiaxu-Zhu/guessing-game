@@ -4,6 +4,7 @@ class GuessingGame {
     // 性能优化：使用事件委托减少事件监听器数量
     constructor() {
     this.modes = {
+    hint_quality: true,
     number: {
     name: "数字猜猜乐",
     description: "猜一个 1-100 之间的数字",
