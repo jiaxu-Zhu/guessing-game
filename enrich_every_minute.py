@@ -307,11 +307,98 @@ def apply_quick_optimization(opt_type):
     
     return None
 
+def check_question_quality():
+    """🔍 检查题目质量"""
+    with open("game.js", "r", encoding="utf-8") as f:
+        js = f.read()
+    
+    issues = []
+    
+    # 1. 检查重复题目
+    words = re.findall(r'word:\s*"([^"]+)"', js)
+    animals = re.findall(r'name:\s*"([^"]+)"', js)
+    idioms = re.findall(r'idiom:\s*"([^"]+)"', js)
+    
+    word_duplicates = list(set([w for w in words if words.count(w) > 1]))
+    animal_duplicates = list(set([a for a in animals if animals.count(a) > 1]))
+    idiom_duplicates = list(set([i for i in idioms if idioms.count(i) > 1]))
+    
+    if word_duplicates:
+        issues.append(f"词语重复 ({len(word_duplicates)}个): {', '.join(word_duplicates[:5])}{'...' if len(word_duplicates) > 5 else ''}")
+    if animal_duplicates:
+        issues.append(f"动物重复 ({len(animal_duplicates)}个): {', '.join(animal_duplicates[:5])}{'...' if len(animal_duplicates) > 5 else ''}")
+    if idiom_duplicates:
+        issues.append(f"成语重复 ({len(idiom_duplicates)}个): {', '.join(idiom_duplicates[:5])}{'...' if len(idiom_duplicates) > 5 else ''}")
+    
+    # 2. 检查题目格式完整性（使用更宽松的正则）
+    # 词语：{ word: "...", hint: "..." }
+    word_entries = len(re.findall(r'\{\s*word:\s*"[^"]+"\s*,\s*hint:\s*"[^"]+"', js))
+    # 动物：{ name: "...", hints: [...] }
+    animal_entries = len(re.findall(r'\{\s*name:\s*"[^"]+"\s*,\s*hints:\s*\[', js))
+    # 成语：{ idiom: "...", emoji: "..." }
+    idiom_entries = len(re.findall(r'\{\s*idiom:\s*"[^"]+"\s*,\s*emoji:\s*"[^"]+"', js))
+    
+    total_words = len(words)
+    total_animals = len(animals)
+    total_idioms = len(idioms)
+    
+    if total_words > 0 and word_entries == 0:
+        issues.append(f"词语格式检测异常 (检测到 {total_words} 题)")
+    if total_animals > 0 and animal_entries == 0:
+        issues.append(f"动物格式检测异常 (检测到 {total_animals} 题)")
+    if total_idioms > 0 and idiom_entries == 0:
+        issues.append(f"成语格式检测异常 (检测到 {total_idioms} 题)")
+    
+    # 3. 检查难度分级一致性
+    difficulty_pattern = r'difficulty:\s*["\']?(easy|medium|hard)["\']?'
+    difficulties = re.findall(difficulty_pattern, js)
+    
+    if not difficulties and total_words + total_animals + total_idioms > 0:
+        issues.append("缺少难度分级标记")
+    
+    # 4. 统计各模式题目数量
+    stats = {
+        'words': total_words,
+        'animals': total_animals,
+        'idioms': total_idioms,
+        'total': total_words + total_animals + total_idioms
+    }
+    
+    return {
+        'issues': issues,
+        'stats': stats,
+        'quality_score': max(0, 100 - len(issues) * 15),
+        'duplicates': {
+            'words': word_duplicates,
+            'animals': animal_duplicates,
+            'idioms': idiom_duplicates
+        }
+    }
+
 def main():
     print(f"⚡ 每分钟智能优化 - {datetime.now().strftime('%H:%M:%S')}")
     
     state = load_state()
     state['consecutive_runs'] += 1
+    
+    # 🔍 首先检查题目质量
+    quality_check = check_question_quality()
+    
+    if quality_check['issues']:
+        print(f"⚠️ 发现 {len(quality_check['issues'])} 项质量问题:")
+        for issue in quality_check['issues']:
+            print(f"   • {issue}")
+        state['pending_optimizations'].append({
+            'type': 'quality_issue',
+            'description': f'质量问题：{"; ".join(quality_check["issues"][:2])}',
+            'timestamp': datetime.now().isoformat()
+        })
+    else:
+        print(f"✅ 题目质量检查通过 (得分：{quality_check['quality_score']}/100)")
+    
+    # 📊 输出题目统计
+    stats = quality_check['stats']
+    print(f"📊 题目统计：词语 {stats['words']} | 动物 {stats['animals']} | 成语 {stats['idioms']} | 总计 {stats['total']}")
     
     features = analyze_game_features()
     optimization = choose_quick_optimization(features)
