@@ -2,16 +2,16 @@
   "pending_optimizations": [
     {
       "type": "quality_issue",
-      "description": "质量问题：词语重复 (10个): 露珠, 雾霾, 沙漠, 流星, 云朵...; 动物重复 (14个): 鸳鸯, 考拉, 袋鼠, 章鱼, 海龟...",
-      "timestamp": "2026-03-14T03:57:05.861784"
+      "description": "质量问题：词语重复 (10个): 彩虹, 火山, 冰川, 闪电, 云朵...; 动物重复 (14个): 蝙蝠, 考拉, 章鱼, 海龟, 企鹅...",
+      "timestamp": "2026-03-14T03:58:11.302657"
     },
     {
-      "type": "cleanup_duplicates",
-      "description": "清理 33 个重复题目 (词语10个，动物14个，成语9个)",
-      "timestamp": "2026-03-14T03:57:05.917629"
+      "type": "expand_idiom_bank",
+      "description": "新增10道idiom题目",
+      "timestamp": "2026-03-14T03:58:11.366846"
     }
   ],
-  "last_commit_version": "v1.0.511",
+  "last_commit_version": "v1.0.513",
   "consecutive_runs": 1,
   "last_optimization": {
     "timestamp": "2026-03-08T19:15:00",
