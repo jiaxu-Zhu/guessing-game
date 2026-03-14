@@ -208,6 +208,11 @@ class GuessingGame {
     hint: "💡 提示：根据第一个提示开始猜测",
     difficulty: 3,
     animals: [
+    { name: "熊猫", hints: ["国宝", "黑白", "竹子"] },
+    { name: "长颈鹿", hints: ["脖子长", "斑点", "很高"] },
+    { name: "企鹅", hints: ["南极", "不会飞", "游泳"] },
+    { name: "袋鼠", hints: ["澳洲", "育儿袋", "跳跃"] },
+    { name: "考拉", hints: ["树袋熊", "桉树叶", "澳洲"] },
     { name: "北极狐", hints: ["白色毛皮", "极地生存", "聪明敏捷"] , difficulty: "medium" },
     { name: "雪鸮", hints: ["白色羽毛", "夜间捕猎", "北极鸟类"] , difficulty: "medium" },
     { name: "驯鹿", hints: ["角很大", "拉雪橇", "寒带动物"] , difficulty: "medium" },
@@ -342,6 +347,11 @@ class GuessingGame {
     hint: "💡 提示：观察表情符号，联想对应的四字成语",
     difficulty: 4,
     idioms: [
+    { idiom: "画蛇添足", emoji: "🐍🦶" },
+    { idiom: "守株待兔", emoji: "🌳🐇" },
+    { idiom: "亡羊补牢", emoji: "🐑🔧" },
+    { idiom: "掩耳盗铃", emoji: "👂🔔" },
+    { idiom: "杯弓蛇影", emoji: "🍷🐍" },
     { idiom: "一鼓作气", emoji: "1️⃣🥁💨" , difficulty: "easy" },
     { idiom: "一帆风顺", emoji: "1️⃣⛵✅" , difficulty: "easy" },
     { idiom: "一路顺风", emoji: "1️⃣路顺风" , difficulty: "medium" },
