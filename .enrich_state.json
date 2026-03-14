@@ -2,13 +2,13 @@
   "pending_optimizations": [
     {
       "type": "quality_issue",
-      "description": "质量问题：词语重复 (15个): 流星, HTML, JavaScript, 火山, Java...; 动物重复 (14个): 考拉, 蜗牛, 孔雀, 长颈鹿, 蝙蝠...",
-      "timestamp": "2026-03-14T08:30:07.413389"
+      "description": "质量问题：词语重复 (15个): CSS, 沙漠, Python, 冰川, HTML...; 动物重复 (14个): 长颈鹿, 考拉, 海龟, 袋鼠, 蜗牛...",
+      "timestamp": "2026-03-14T09:00:05.352342"
     },
     {
-      "type": "cleanup_duplicates",
-      "description": "清理 38 个重复题目 (词语15个，动物14个，成语9个)",
-      "timestamp": "2026-03-14T08:30:07.585109"
+      "type": "expand_animal_bank",
+      "description": "新增10道animal题目",
+      "timestamp": "2026-03-14T09:00:05.376141"
     }
   ],
   "last_commit_version": "v1.0.514",
