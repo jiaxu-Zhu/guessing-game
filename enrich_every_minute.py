@@ -209,13 +209,26 @@ def choose_quick_optimization(features):
     animal_count = len(re.findall(r'{ name:', js))
     idiom_count = len(re.findall(r'{ idiom:', js))
     
-    # 🎯 优化 1: 自动扩充题目库
-    if word_count < 150:
-        quick_opts.append(('expand_word_bank', f'扩充词语题库 ({word_count}/150)'))
-    if animal_count < 100:
-        quick_opts.append(('expand_animal_bank', f'扩充动物题库 ({animal_count}/100)'))
-    if idiom_count < 150:
-        quick_opts.append(('expand_idiom_bank', f'扩充成语题库 ({idiom_count}/150)'))
+    # 🔍 优先处理重复题目问题
+    words = re.findall(r'word:\s*"([^"]+)"', js)
+    animals = re.findall(r'name:\s*"([^"]+)"', js)
+    idioms = re.findall(r'idiom:\s*"([^"]+)"', js)
+    
+    word_duplicates = list(set([w for w in words if words.count(w) > 1]))
+    animal_duplicates = list(set([a for a in animals if animals.count(a) > 1]))
+    idiom_duplicates = list(set([i for i in idioms if idioms.count(i) > 1]))
+    
+    # 如果有重复题目，优先清理
+    if word_duplicates or animal_duplicates or idiom_duplicates:
+        quick_opts.append(('cleanup_duplicates', f'清理重复题目 (词语{len(word_duplicates)}个，动物{len(animal_duplicates)}个，成语{len(idiom_duplicates)}个)'))
+    
+    # 🎯 优化 1: 自动扩充题目库（目标：各模式 200 题）
+    if word_count < 200:
+        quick_opts.append(('expand_word_bank', f'扩充词语题库 ({word_count}/200)'))
+    if animal_count < 200:
+        quick_opts.append(('expand_animal_bank', f'扩充动物题库 ({animal_count}/200)'))
+    if idiom_count < 200:
+        quick_opts.append(('expand_idiom_bank', f'扩充成语题库 ({idiom_count}/200)'))
     
     # 💡 优化 2: 智能提示优化
     if not features.get('hint_quality'):
@@ -238,10 +251,82 @@ def choose_quick_optimization(features):
     if not quick_opts:
         return None
     
+    # 优先选择题目扩充或清理
+    priority_opts = [opt for opt in quick_opts if opt[0] in ['cleanup_duplicates', 'expand_word_bank', 'expand_animal_bank', 'expand_idiom_bank']]
+    if priority_opts:
+        return random.choice(priority_opts)
+    
     return random.choice(quick_opts)
+
+def cleanup_duplicates():
+    """🧹 清理重复题目"""
+    with open("game.js", "r", encoding="utf-8") as f:
+        js = f.read()
+    
+    cleaned = 0
+    
+    # 清理词语重复
+    words = re.findall(r'word:\s*"([^"]+)"', js)
+    word_seen = set()
+    word_dups = set([w for w in words if words.count(w) > 1])
+    
+    for dup in word_dups:
+        # 保留第一个，删除后续重复
+        count = 0
+        def replace_dup(match):
+            nonlocal count
+            if match.group(1) == dup:
+                count += 1
+                if count > 1:
+                    return ''  # 删除重复项
+            return match.group(0)
+        
+        js = re.sub(r'(\{\s*word:\s*"([^"]+)"\s*,\s*hint:\s*"[^"]+"\s*,?\s*difficulty:\s*"[^"]+"\s*\},?\s*\n?)', replace_dup, js)
+    
+    # 清理动物重复
+    animals = re.findall(r'name:\s*"([^"]+)"', js)
+    animal_dups = set([a for a in animals if animals.count(a) > 1])
+    
+    for dup in animal_dups:
+        count = 0
+        def replace_dup(match):
+            nonlocal count
+            if match.group(1) == dup:
+                count += 1
+                if count > 1:
+                    return ''
+            return match.group(0)
+        
+        js = re.sub(r'(\{\s*name:\s*"([^"]+)"\s*,\s*hints:\s*\[[^\]]+\]\s*,?\s*difficulty:\s*"[^"]+"\s*\},?\s*\n?)', replace_dup, js)
+    
+    # 清理成语重复
+    idioms = re.findall(r'idiom:\s*"([^"]+)"', js)
+    idiom_dups = set([i for i in idioms if idioms.count(i) > 1])
+    
+    for dup in idiom_dups:
+        count = 0
+        def replace_dup(match):
+            nonlocal count
+            if match.group(1) == dup:
+                count += 1
+                if count > 1:
+                    return ''
+            return match.group(0)
+        
+        js = re.sub(r'(\{\s*idiom:\s*"([^"]+)"\s*,\s*emoji:\s*"[^"]+"\s*,?\s*difficulty:\s*"[^"]+"\s*\},?\s*\n?)', replace_dup, js)
+    
+    with open("game.js", "w", encoding="utf-8") as f:
+        f.write(js)
+    
+    total_removed = len(word_dups) + len(animal_dups) + len(idiom_dups)
+    return f"清理 {total_removed} 个重复题目 (词语{len(word_dups)}个，动物{len(animal_dups)}个，成语{len(idiom_dups)}个)"
 
 def apply_quick_optimization(opt_type):
     """应用优化"""
+    
+    # 🧹 清理重复题目
+    if opt_type == 'cleanup_duplicates':
+        return cleanup_duplicates()
     
     # 🎯 题目扩充
     if opt_type == 'expand_word_bank':
