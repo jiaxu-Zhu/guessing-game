@@ -2,13 +2,13 @@
   "pending_optimizations": [
     {
       "type": "quality_issue",
-      "description": "质量问题：词语重复 (15个): CSS, 云朵, 冰川, 沙漠, 闪电...; 动物重复 (14个): 海豚, 章鱼, 刺猬, 熊猫, 长颈鹿...",
-      "timestamp": "2026-03-14T04:21:45.174434"
+      "description": "质量问题：词语重复 (15个): HTML, 云朵, 闪电, 露珠, CSS...; 动物重复 (14个): 海豚, 海龟, 蝴蝶, 长颈鹿, 刺猬...",
+      "timestamp": "2026-03-14T05:10:14.536057"
     },
     {
-      "type": "expand_idiom_bank",
-      "description": "新增10道idiom题目",
-      "timestamp": "2026-03-14T04:21:45.218049"
+      "type": "expand_word_bank",
+      "description": "新增10道word题目",
+      "timestamp": "2026-03-14T05:10:14.594382"
     }
   ],
   "last_commit_version": "v1.0.514",
