@@ -2,13 +2,13 @@
   "pending_optimizations": [
     {
       "type": "quality_issue",
-      "description": "质量问题：词语重复 (15个): 露珠, 彩虹, JavaScript, HTML, 沙漠...; 动物重复 (14个): 袋鼠, 刺猬, 蝙蝠, 长颈鹿, 企鹅...",
-      "timestamp": "2026-03-14T07:30:06.701936"
+      "description": "质量问题：词语重复 (15个): 闪电, 流星, 彩虹, 沙漠, 火山...; 动物重复 (14个): 蜗牛, 考拉, 鸳鸯, 海豚, 熊猫...",
+      "timestamp": "2026-03-14T08:00:08.297502"
     },
     {
-      "type": "expand_animal_bank",
-      "description": "新增10道animal题目",
-      "timestamp": "2026-03-14T07:30:06.726307"
+      "type": "cleanup_duplicates",
+      "description": "清理 38 个重复题目 (词语15个，动物14个，成语9个)",
+      "timestamp": "2026-03-14T08:00:08.331519"
     }
   ],
   "last_commit_version": "v1.0.514",
