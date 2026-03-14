@@ -9,10 +9,20 @@
       "type": "expand_animal_bank",
       "description": "新增10道animal题目",
       "timestamp": "2026-03-14T03:53:46.552286"
+    },
+    {
+      "type": "quality_issue",
+      "description": "质量问题：词语重复 (10个): 闪电, 露珠, 云朵, 火山, 冰川...; 动物重复 (14个): 刺猬, 蜗牛, 企鹅, 鸳鸯, 袋鼠...",
+      "timestamp": "2026-03-14T03:54:11.439000"
+    },
+    {
+      "type": "expand_idiom_bank",
+      "description": "新增10道idiom题目",
+      "timestamp": "2026-03-14T03:54:11.478235"
     }
   ],
   "last_commit_version": "v1.0.507",
-  "consecutive_runs": 1,
+  "consecutive_runs": 2,
   "last_optimization": {
     "timestamp": "2026-03-08T19:15:00",
     "changes": [
