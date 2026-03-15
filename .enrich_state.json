@@ -2,25 +2,15 @@
   "pending_optimizations": [
     {
       "type": "quality_issue",
-      "description": "质量问题：词语重复 (15个): 雾霾, 露珠, Java, JavaScript, 彩虹...; 动物重复 (14个): 长颈鹿, 孔雀, 考拉, 蜗牛, 蝴蝶...",
-      "timestamp": "2026-03-15T09:50:14.192602"
+      "description": "质量问题：词语重复 (15个): 流星, 闪电, Python, 彩虹, Java...; 动物重复 (14个): 鸳鸯, 长颈鹿, 考拉, 企鹅, 章鱼...",
+      "timestamp": "2026-03-15T09:51:23.848670"
     },
     {
-      "type": "expand_idiom_bank",
-      "description": "新增10道idiom题目",
-      "timestamp": "2026-03-15T09:50:14.224274"
-    },
-    {
-      "type": "quality_issue",
-      "description": "质量问题：词语重复 (15个): 云朵, 冰川, 露珠, Java, 火山...; 动物重复 (14个): 考拉, 长颈鹿, 蝴蝶, 蜗牛, 海豚...",
-      "timestamp": "2026-03-15T09:50:15.671887"
-    },
-    {
-      "type": "expand_idiom_bank",
-      "description": "新增10道idiom题目",
-      "timestamp": "2026-03-15T09:50:15.715908"
+      "type": "expand_animal_bank",
+      "description": "新增10道animal题目",
+      "timestamp": "2026-03-15T09:51:23.911692"
     }
   ],
-  "last_commit_version": "v1.0.590",
-  "consecutive_runs": 2
+  "last_commit_version": "v1.0.592",
+  "consecutive_runs": 1
 }
