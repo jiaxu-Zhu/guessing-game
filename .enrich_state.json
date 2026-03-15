@@ -9,8 +9,18 @@
       "type": "expand_idiom_bank",
       "description": "新增10道idiom题目",
       "timestamp": "2026-03-15T09:50:14.224274"
+    },
+    {
+      "type": "quality_issue",
+      "description": "质量问题：词语重复 (15个): 云朵, 冰川, 露珠, Java, 火山...; 动物重复 (14个): 考拉, 长颈鹿, 蝴蝶, 蜗牛, 海豚...",
+      "timestamp": "2026-03-15T09:50:15.671887"
+    },
+    {
+      "type": "expand_idiom_bank",
+      "description": "新增10道idiom题目",
+      "timestamp": "2026-03-15T09:50:15.715908"
     }
   ],
   "last_commit_version": "v1.0.590",
-  "consecutive_runs": 1
+  "consecutive_runs": 2
 }
