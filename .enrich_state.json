@@ -2,15 +2,15 @@
   "pending_optimizations": [
     {
       "type": "quality_issue",
-      "description": "质量问题：词语重复 (15个): CSS, 雾霾, 闪电, Python, 流星...; 动物重复 (14个): 章鱼, 考拉, 熊猫, 蝴蝶, 袋鼠...",
-      "timestamp": "2026-03-15T11:20:05.804534"
+      "description": "质量问题：词语重复 (15个): Java, JavaScript, 雾霾, 流星, 彩虹...; 动物重复 (14个): 长颈鹿, 企鹅, 蝙蝠, 章鱼, 袋鼠...",
+      "timestamp": "2026-03-15T11:40:04.669772"
     },
     {
-      "type": "expand_word_bank",
-      "description": "新增10道word题目",
-      "timestamp": "2026-03-15T11:20:05.847828"
+      "type": "expand_idiom_bank",
+      "description": "新增10道idiom题目",
+      "timestamp": "2026-03-15T11:40:04.721493"
     }
   ],
-  "last_commit_version": "v1.0.608",
+  "last_commit_version": "v1.0.609",
   "consecutive_runs": 1
 }
