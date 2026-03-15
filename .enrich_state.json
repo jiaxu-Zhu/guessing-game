@@ -2,15 +2,15 @@
   "pending_optimizations": [
     {
       "type": "quality_issue",
-      "description": "质量问题：词语重复 (15个): HTML, 雾霾, Java, 冰川, CSS...; 动物重复 (14个): 孔雀, 袋鼠, 蜗牛, 鸳鸯, 考拉...",
-      "timestamp": "2026-03-15T09:46:52.195579"
+      "description": "质量问题：词语重复 (15个): 火山, 流星, 闪电, 露珠, 雾霾...; 动物重复 (14个): 孔雀, 海龟, 考拉, 蜗牛, 蝙蝠...",
+      "timestamp": "2026-03-15T09:48:02.168899"
     },
     {
       "type": "cleanup_duplicates",
       "description": "清理 38 个重复题目 (词语15个，动物14个，成语9个)",
-      "timestamp": "2026-03-15T09:46:52.242796"
+      "timestamp": "2026-03-15T09:48:02.259543"
     }
   ],
-  "last_commit_version": "v1.0.585",
+  "last_commit_version": "v1.0.587",
   "consecutive_runs": 1
 }
