@@ -2,15 +2,15 @@
   "pending_optimizations": [
     {
       "type": "quality_issue",
-      "description": "质量问题：词语重复 (15个): 流星, 闪电, Python, 彩虹, Java...; 动物重复 (14个): 鸳鸯, 长颈鹿, 考拉, 企鹅, 章鱼...",
-      "timestamp": "2026-03-15T09:51:23.848670"
+      "description": "质量问题：词语重复 (15个): Python, 闪电, 火山, 雪花, 流星...; 动物重复 (14个): 袋鼠, 蝙蝠, 海龟, 考拉, 章鱼...",
+      "timestamp": "2026-03-15T09:52:09.348943"
     },
     {
-      "type": "expand_animal_bank",
-      "description": "新增10道animal题目",
-      "timestamp": "2026-03-15T09:51:23.911692"
+      "type": "cleanup_duplicates",
+      "description": "清理 38 个重复题目 (词语15个，动物14个，成语9个)",
+      "timestamp": "2026-03-15T09:52:09.427944"
     }
   ],
-  "last_commit_version": "v1.0.592",
+  "last_commit_version": "v1.0.593",
   "consecutive_runs": 1
 }
