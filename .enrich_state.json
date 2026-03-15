@@ -2,15 +2,15 @@
   "pending_optimizations": [
     {
       "type": "quality_issue",
-      "description": "质量问题：词语重复 (15个): 冰川, 雾霾, 火山, Python, Java...; 动物重复 (14个): 章鱼, 海豚, 蝴蝶, 海龟, 考拉...",
-      "timestamp": "2026-03-15T09:53:35.823571"
+      "description": "质量问题：词语重复 (15个): 流星, JavaScript, 彩虹, 沙漠, 云朵...; 动物重复 (14个): 蝴蝶, 长颈鹿, 海豚, 袋鼠, 章鱼...",
+      "timestamp": "2026-03-15T09:54:15.870219"
     },
     {
-      "type": "expand_idiom_bank",
-      "description": "新增10道idiom题目",
-      "timestamp": "2026-03-15T09:53:35.844358"
+      "type": "expand_word_bank",
+      "description": "新增10道word题目",
+      "timestamp": "2026-03-15T09:54:15.902446"
     }
   ],
-  "last_commit_version": "v1.0.595",
+  "last_commit_version": "v1.0.596",
   "consecutive_runs": 1
 }
