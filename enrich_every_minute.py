@@ -222,13 +222,13 @@ def choose_quick_optimization(features):
     if word_duplicates or animal_duplicates or idiom_duplicates:
         quick_opts.append(('cleanup_duplicates', f'清理重复题目 (词语{len(word_duplicates)}个，动物{len(animal_duplicates)}个，成语{len(idiom_duplicates)}个)'))
     
-    # 🎯 优化 1: 自动扩充题目库（目标：各模式 200 题）
-    if word_count < 200:
-        quick_opts.append(('expand_word_bank', f'扩充词语题库 ({word_count}/200)'))
-    if animal_count < 200:
-        quick_opts.append(('expand_animal_bank', f'扩充动物题库 ({animal_count}/200)'))
-    if idiom_count < 200:
-        quick_opts.append(('expand_idiom_bank', f'扩充成语题库 ({idiom_count}/200)'))
+    # 🎯 优化 1: 自动扩充题目库（目标：各模式 500 题）
+    if word_count < 500:
+        quick_opts.append(('expand_word_bank', f'扩充词语题库 ({word_count}/500)'))
+    if animal_count < 500:
+        quick_opts.append(('expand_animal_bank', f'扩充动物题库 ({animal_count}/500)'))
+    if idiom_count < 500:
+        quick_opts.append(('expand_idiom_bank', f'扩充成语题库 ({idiom_count}/500)'))
     
     # 💡 优化 2: 智能提示优化
     if not features.get('hint_quality'):

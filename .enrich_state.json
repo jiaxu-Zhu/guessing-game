@@ -2,15 +2,15 @@
   "pending_optimizations": [
     {
       "type": "quality_issue",
-      "description": "质量问题：词语重复 (15个): JavaScript, 彩虹, 火山, Java, 露珠...; 动物重复 (14个): 海龟, 长颈鹿, 鸳鸯, 蝙蝠, 考拉...",
-      "timestamp": "2026-03-15T09:37:55.921243"
+      "description": "质量问题：词语重复 (15个): 云朵, CSS, 火山, Python, 冰川...; 动物重复 (14个): 蝙蝠, 企鹅, 海豚, 熊猫, 考拉...",
+      "timestamp": "2026-03-15T09:42:15.218796"
     },
     {
-      "type": "cleanup_duplicates",
-      "description": "清理 38 个重复题目 (词语15个，动物14个，成语9个)",
-      "timestamp": "2026-03-15T09:37:55.993199"
+      "type": "expand_idiom_bank",
+      "description": "新增10道idiom题目",
+      "timestamp": "2026-03-15T09:42:15.246383"
     }
   ],
-  "last_commit_version": "v1.0.577",
+  "last_commit_version": "v1.0.578",
   "consecutive_runs": 1
 }
