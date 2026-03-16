@@ -504,9 +504,14 @@ def main():
         print("✅ 游戏已经很完善，本次无需优化")
     
     # 每 10 次运行或检测到重要更改时提交
-    if (state['consecutive_runs'] >= 10 or 
+    should_commit = (
+        state['consecutive_runs'] >= 10 or 
         len(state['pending_optimizations']) >= 3 or
-        (optimization and opt_type in ['add_quick_animation', 'add_color_var'])):
+        (optimization and optimization[0] in ['add_quick_animation', 'add_color_var'])
+    )
+    
+    if should_commit and optimization:
+        opt_type, description = optimization
         
         current_version = get_current_version()
         new_version = increment_version(current_version)
