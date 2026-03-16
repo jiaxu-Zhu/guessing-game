@@ -2,15 +2,15 @@
   "pending_optimizations": [
     {
       "type": "quality_issue",
-      "description": "质量问题：词语重复 (15个): CSS, HTML, 沙漠, Python, 流星...; 动物重复 (14个): 考拉, 袋鼠, 企鹅, 章鱼, 海豚...",
-      "timestamp": "2026-03-16T14:00:19.258613"
+      "description": "质量问题：词语重复 (15个): 冰川, 云朵, CSS, 雪花, 雾霾...; 动物重复 (14个): 长颈鹿, 考拉, 海豚, 蜗牛, 章鱼...",
+      "timestamp": "2026-03-16T14:15:11.603951"
     },
     {
-      "type": "expand_idiom_bank",
-      "description": "新增10道idiom题目",
-      "timestamp": "2026-03-16T14:00:19.321139"
+      "type": "cleanup_duplicates",
+      "description": "清理 38 个重复题目 (词语15个，动物14个，成语9个)",
+      "timestamp": "2026-03-16T14:15:11.704963"
     }
   ],
-  "last_commit_version": "v1.0.617",
+  "last_commit_version": "v1.0.618",
   "consecutive_runs": 1
 }
