@@ -140,6 +140,11 @@ class GuessingGame {
     { word: "HTML", hint: "网页标记语言" },
     { word: "CSS", hint: "样式表语言" },
     { word: "Java", hint: "面向对象编程语言" },
+    { word: "Python", hint: "一种编程语言" },
+    { word: "JavaScript", hint: "网页脚本语言" },
+    { word: "HTML", hint: "网页标记语言" },
+    { word: "CSS", hint: "样式表语言" },
+    { word: "Java", hint: "面向对象编程语言" },
     { word: "宇宙", hint: "包含一切物质和能量的无限空间" , difficulty: "easy" },
     { word: "星球", hint: "围绕恒星运行的天体" , difficulty: "easy" },
     { word: "银河", hint: "横跨夜空的星河带" , difficulty: "easy" },
@@ -787,6 +792,11 @@ class GuessingGame {
     { idiom: "亡羊补牢", emoji: "🐑🔧" },
     { idiom: "掩耳盗铃", emoji: "👂🔔" },
     { idiom: "杯弓蛇影", emoji: "🍷🐍" },
+    { idiom: "画蛇添足", emoji: "🐍🦶" },
+    { idiom: "守株待兔", emoji: "🌳🐇" },
+    { idiom: "亡羊补牢", emoji: "🐑🔧" },
+    { idiom: "掩耳盗铃", emoji: "👂🔔" },
+    { idiom: "杯弓蛇影", emoji: "🍷🐍" },
     { idiom: "一鼓作气", emoji: "1️⃣🥁💨" , difficulty: "easy" },
     { idiom: "一帆风顺", emoji: "1️⃣⛵✅" , difficulty: "easy" },
     { idiom: "一路顺风", emoji: "1️⃣路顺风" , difficulty: "medium" },
@@ -1104,20 +1114,20 @@ class GuessingGame {
     this.ui.currentMode.textContent = this.modes[mode].name;
     this.ui.attemptsLeft.textContent = this.maxAttempts;
     this.ui.hintsLeft.textContent = this.maxHints;
-    // 设置初始提示
+    // 设置初始提示 - 显示原始问题/提示
     switch(mode) {
     case 'number':
-    this.ui.hintText.textContent = "猜一个 1-100 之间的数字";
+    this.ui.hintText.innerHTML = `<div class="original-hint">🎯 猜一个 1-100 之间的数字</div>`;
     this.generateQuickNumbers();
     break;
     case 'word':
-    this.ui.hintText.textContent = this.answer.hint;
+    this.ui.hintText.innerHTML = `<div class="original-hint">📝 题目：${this.answer.hint}</div><div class="answer-length">💬 答案长度：${this.answer.word.length} 个字</div>`;
     break;
     case 'animal':
-    this.ui.hintText.textContent = this.answer.hints[0];
+    this.ui.hintText.innerHTML = `<div class="original-hint">🐾 提示 1：${this.answer.hints[0]}</div><div class="answer-length">💬 答案长度：${this.answer.name.length} 个字</div>`;
     break;
     case 'emoji':
-    this.ui.hintText.textContent = this.answer.emoji;
+    this.ui.hintText.innerHTML = `<div class="original-hint">😊 表情：${this.answer.emoji}</div><div class="answer-length">💬 成语长度：${this.answer.idiom.length} 个字</div>`;
     break;
     }
     // 清空历史反馈
@@ -1162,40 +1172,157 @@ class GuessingGame {
     });
     }
     useHint() {
-    if (this.hintsUsed >= this.maxHints) return;
+    if (this.hintsUsed >= this.maxHints) {
+    alert('💡 提示已用完！');
+    return;
+    }
     this.hintsUsed++;
     this.ui.hintsLeft.textContent = this.maxHints - this.hintsUsed;
+    
+    // 生成额外提示，不覆盖原有内容
+    let extraHint = '';
+    
     switch(this.currentMode) {
     case 'number':
-    // 提供范围提示
+    // 多级范围提示
+    if (this.hintsUsed === 1) {
+    const range = 20;
+    const min = Math.max(1, this.answer - range);
+    const max = Math.min(100, this.answer + range);
+    extraHint = `🔍 范围提示：答案在 ${min} 到 ${max} 之间`;
+    } else if (this.hintsUsed === 2) {
     const range = 10;
     const min = Math.max(1, this.answer - range);
     const max = Math.min(100, this.answer + range);
-    this.ui.hintText.textContent = `答案在 ${min} 到 ${max} 之间`;
-    break;
-    case 'animal':
-    // 提供额外提示
-    if (this.hintsUsed < this.answer.hints.length) {
-    this.ui.hintText.textContent = this.answer.hints[this.hintsUsed];
+    extraHint = `🎯 精确范围：答案在 ${min} 到 ${max} 之间`;
     } else {
-    this.ui.hintText.textContent = "没有更多提示了";
+    const isOdd = this.answer % 2 === 1;
+    extraHint = `💡 最后提示：这是一个${isOdd ? '奇数' : '偶数'}`;
     }
     break;
+    
     case 'word':
-    // 提供首字母提示
+    // 多级提示：首字母 → 类别 → 相关词
+    if (this.hintsUsed === 1) {
     const firstLetter = this.answer.word.charAt(0);
-    this.ui.hintText.textContent = `第一个字是：${firstLetter}`;
+    extraHint = `🔤 首字提示：第一个字是"${firstLetter}"`;
+    } else if (this.hintsUsed === 2) {
+    const category = this.getWordCategory(this.answer.word);
+    extraHint = `📚 类别提示：属于${category}`;
+    } else {
+    const relatedWord = this.getRelatedWord(this.answer.word);
+    extraHint = `🔗 联想提示：想想"${relatedWord}"相关的词`;
+    }
     break;
+    
+    case 'animal':
+    // 多级提示：显示更多预设提示
+    if (this.hintsUsed < this.answer.hints.length) {
+    extraHint = `🐾 提示${this.hintsUsed + 1}：${this.answer.hints[this.hintsUsed]}`;
+    } else {
+    const category = this.getAnimalCategory(this.answer.name);
+    extraHint = `💡 最后提示：这是一种${category}动物`;
+    }
+    break;
+    
     case 'emoji':
-    // 提供字数提示
+    // 多级提示：字数 → 含义 → 首字
+    if (this.hintsUsed === 1) {
     const wordCount = this.answer.idiom.length;
-    this.ui.hintText.textContent = `这是一个${wordCount}字成语`;
+    extraHint = `📏 字数提示：这是一个${wordCount}字成语`;
+    } else if (this.hintsUsed === 2) {
+    const meaning = this.getIdiomMeaning(this.answer.idiom);
+    extraHint = `💭 含义提示：${meaning}`;
+    } else {
+    const firstChar = this.answer.idiom.charAt(0);
+    extraHint = `🔤 首字提示：第一个字是"${firstChar}"`;
+    }
     break;
     }
+    
+    // 在原始提示下方追加额外提示，不覆盖原有内容
+    const originalHint = this.ui.hintText.innerHTML;
+    this.ui.hintText.innerHTML = `${originalHint}<div class="extra-hint">✨ ${extraHint}</div>`;
+    
     // 添加动画效果
     const hintCard = document.querySelector('.hint-card');
     hintCard.classList.add('pulse');
     setTimeout(() => hintCard.classList.remove('pulse'), 500);
+    }
+    
+    // 获取词语类别
+    getWordCategory(word) {
+    const techWords = ['Python', 'JavaScript', 'HTML', 'CSS', 'Java', '编程', '代码', '软件', '网络', '数字'];
+    const natureWords = ['宇宙', '星球', '银河', '太阳', '月亮', '海洋', '森林', '彩虹', '沙漠', '火山', '冰川', '流星', '云朵', '闪电', '露珠', '雪花', '雾霾'];
+    const emotionWords = ['梦想', '友谊', '勇气', '希望', '幸福', '成功', '智慧', '和平', '感恩', '坚持', '宽容', '乐观', '善良', '诚实', '勤奋'];
+    const disasterWords = ['地震', '台风', '飓风', '龙卷风', '暴雨', '干旱', '霜冻', '雾气', '沙尘', '泥石流', '滑坡', '崩塌', '海啸'];
+    
+    if (techWords.some(w => word.includes(w))) return '科技/计算机类';
+    if (natureWords.some(w => word.includes(w))) return '自然/地理类';
+    if (emotionWords.some(w => word.includes(w))) return '情感/品质类';
+    if (disasterWords.some(w => word.includes(w))) return '灾害/天气类';
+    return '其他类';
+    }
+    
+    // 获取相关词
+    getRelatedWord(word) {
+    const relatedMap = {
+    'Python': '编程', 'JavaScript': '网页', 'HTML': '网页', 'CSS': '样式', 'Java': '编程',
+    '宇宙': '太空', '星球': '天体', '银河': '星河', '太阳': '光明', '月亮': '夜晚',
+    '梦想': '目标', '友谊': '朋友', '勇气': '勇敢', '希望': '期待', '幸福': '快乐',
+    '地震': '震动', '台风': '风暴', '彩虹': '七彩', '沙漠': '干旱', '火山': '喷发'
+    };
+    return relatedMap[word] || '相关事物';
+    }
+    
+    // 获取动物类别
+    getAnimalCategory(name) {
+    const landAnimals = ['熊猫', '狮子', '老虎', '大象', '长颈鹿', '猴子', '兔子', '狐狸', '袋鼠', '考拉', '狼', '熊'];
+    const seaAnimals = ['章鱼', '海豚', '海龟', '鲸鱼', '海星', '海胆', '螃蟹', '龙虾', '海豹', '海象', '海獭', '海牛'];
+    const birdAnimals = ['企鹅', '孔雀', '蝴蝶', '鸳鸯', '海鸥', '信天翁', '老鹰', '猫头鹰', '凤凰'];
+    const insectAnimals = ['蝴蝶', '蜜蜂', '蚂蚁', '蜻蜓', '蜘蛛', '蚕', '蝉', '萤火虫'];
+    
+    if (landAnimals.some(a => name.includes(a))) return '陆地';
+    if (seaAnimals.some(a => name.includes(a))) return '海洋';
+    if (birdAnimals.some(a => name.includes(a))) return '鸟类';
+    if (insectAnimals.some(a => name.includes(a))) return '昆虫';
+    return '其他';
+    }
+    
+    // 获取成语含义
+    getIdiomMeaning(idiom) {
+    const meaningMap = {
+    '画蛇添足': '比喻做了多余的事，反而不恰当',
+    '守株待兔': '比喻死守狭隘经验，不知变通',
+    '亡羊补牢': '比喻出了问题以后想办法补救',
+    '掩耳盗铃': '比喻自己欺骗自己',
+    '杯弓蛇影': '比喻因疑神疑鬼而引起恐惧',
+    '滥竽充数': '比喻没有真才实学的人混在行家里面',
+    '买椟还珠': '比喻没有眼光，取舍不当',
+    '刻舟求剑': '比喻拘泥成例，不知道跟着情势的变化而改变看法或办法',
+    '一鼓作气': '比喻趁劲头大的时候鼓起干劲，一口气把工作做完',
+    '一帆风顺': '比喻非常顺利，没有任何阻碍',
+    '一举两得': '做一件事得到两方面的好处',
+    '一石二鸟': '比喻做一件事达到两个目的',
+    '画龙点睛': '比喻作文或说话时在关键地方加上精辟的语句',
+    '对牛弹琴': '比喻对不懂道理的人讲道理',
+    '狐假虎威': '比喻依仗别人的势力来欺压人',
+    '井底之蛙': '比喻见识狭窄的人',
+    '三心二意': '意志不坚定，犹豫不决',
+    '四面楚歌': '比喻陷入四面受敌、孤立无援的境地',
+    '五湖四海': '指全国各地，有时也指世界各地',
+    '六神无主': '形容惊慌着急，没了主意，不知如何才好',
+    '七上八下': '形容心里慌乱不安',
+    '九牛一毛': '比喻极大数量中极微小的数量',
+    '十全十美': '十分完美，毫无欠缺',
+    '人山人海': '人群如山似海，形容人聚集得非常多',
+    '心花怒放': '形容内心高兴极了',
+    '鸟语花香': '形容春天的美好景象',
+    '龙飞凤舞': '形容气势奔放雄壮，也形容书法笔势有力',
+    '虎视眈眈': '像老虎那样凶狠地盯着，形容心怀不善',
+    '鹤立鸡群': '比喻一个人的仪表或才能在周围一群人里显得很突出'
+    };
+    return meaningMap[idiom] || '想想这个成语的意思';
     }
     submitGuess() {
     const guess = this.ui.guessInput.value.trim();
