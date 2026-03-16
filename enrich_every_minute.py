@@ -265,7 +265,7 @@ def cleanup_duplicates():
     
     cleaned = 0
     
-    # 清理词语重复
+    # 清理词语重复 - 支持有无 difficulty 字段两种格式
     words = re.findall(r'word:\s*"([^"]+)"', js)
     word_seen = set()
     word_dups = set([w for w in words if words.count(w) > 1])
@@ -281,7 +281,8 @@ def cleanup_duplicates():
                     return ''  # 删除重复项
             return match.group(0)
         
-        js = re.sub(r'(\{\s*word:\s*"([^"]+)"\s*,\s*hint:\s*"[^"]+"\s*,?\s*difficulty:\s*"[^"]+"\s*\},?\s*\n?)', replace_dup, js)
+        # 支持有无 difficulty 两种格式
+        js = re.sub(r'(\{\s*word:\s*"([^"]+)"\s*,\s*hint:\s*"[^"]+"\s*(?:,\s*difficulty:\s*"[^"]+")?\s*\},?\s*\n?)', replace_dup, js)
     
     # 清理动物重复
     animals = re.findall(r'name:\s*"([^"]+)"', js)
@@ -297,7 +298,8 @@ def cleanup_duplicates():
                     return ''
             return match.group(0)
         
-        js = re.sub(r'(\{\s*name:\s*"([^"]+)"\s*,\s*hints:\s*\[[^\]]+\]\s*,?\s*difficulty:\s*"[^"]+"\s*\},?\s*\n?)', replace_dup, js)
+        # 支持有无 difficulty 两种格式
+        js = re.sub(r'(\{\s*name:\s*"([^"]+)"\s*,\s*hints:\s*\[[^\]]+\]\s*(?:,\s*difficulty:\s*"[^"]+")?\s*\},?\s*\n?)', replace_dup, js)
     
     # 清理成语重复
     idioms = re.findall(r'idiom:\s*"([^"]+)"', js)
@@ -313,7 +315,8 @@ def cleanup_duplicates():
                     return ''
             return match.group(0)
         
-        js = re.sub(r'(\{\s*idiom:\s*"([^"]+)"\s*,\s*emoji:\s*"[^"]+"\s*,?\s*difficulty:\s*"[^"]+"\s*\},?\s*\n?)', replace_dup, js)
+        # 支持有无 difficulty 两种格式
+        js = re.sub(r'(\{\s*idiom:\s*"([^"]+)"\s*,\s*emoji:\s*"[^"]+"\s*(?:,\s*difficulty:\s*"[^"]+")?\s*\},?\s*\n?)', replace_dup, js)
     
     with open("game.js", "w", encoding="utf-8") as f:
         f.write(js)
