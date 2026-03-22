@@ -1343,10 +1343,8 @@ class GuessingGame {
     }
     this.hintsUsed++;
     this.ui.hintsLeft.textContent = this.maxHints - this.hintsUsed;
-    
     // 生成额外提示，不覆盖原有内容
     let extraHint = '';
-    
     switch(this.currentMode) {
     case 'number':
     // 多级范围提示
@@ -1365,7 +1363,6 @@ class GuessingGame {
     extraHint = `💡 最后提示：这是一个${isOdd ? '奇数' : '偶数'}`;
     }
     break;
-    
     case 'word':
     // 多级提示：首字母 → 类别 → 相关词
     if (this.hintsUsed === 1) {
@@ -1379,7 +1376,6 @@ class GuessingGame {
     extraHint = `🔗 联想提示：想想"${relatedWord}"相关的词`;
     }
     break;
-    
     case 'animal':
     // 多级提示：显示更多预设提示
     if (this.hintsUsed < this.answer.hints.length) {
@@ -1389,7 +1385,6 @@ class GuessingGame {
     extraHint = `💡 最后提示：这是一种${category}动物`;
     }
     break;
-    
     case 'emoji':
     // 多级提示：字数 → 含义 → 首字
     if (this.hintsUsed === 1) {
@@ -1404,31 +1399,26 @@ class GuessingGame {
     }
     break;
     }
-    
     // 在原始提示下方追加额外提示，不覆盖原有内容
     const originalHint = this.ui.hintText.innerHTML;
     this.ui.hintText.innerHTML = `${originalHint}<div class="extra-hint">✨ ${extraHint}</div>`;
-    
     // 添加动画效果
     const hintCard = document.querySelector('.hint-card');
     hintCard.classList.add('pulse');
     setTimeout(() => hintCard.classList.remove('pulse'), 500);
     }
-    
     // 获取词语类别
     getWordCategory(word) {
     const techWords = ['Python', 'JavaScript', 'HTML', 'CSS', 'Java', '编程', '代码', '软件', '网络', '数字'];
     const natureWords = ['宇宙', '星球', '银河', '太阳', '月亮', '海洋', '森林', '彩虹', '沙漠', '火山', '冰川', '流星', '云朵', '闪电', '露珠', '雪花', '雾霾'];
     const emotionWords = ['梦想', '友谊', '勇气', '希望', '幸福', '成功', '智慧', '和平', '感恩', '坚持', '宽容', '乐观', '善良', '诚实', '勤奋'];
     const disasterWords = ['地震', '台风', '飓风', '龙卷风', '暴雨', '干旱', '霜冻', '雾气', '沙尘', '泥石流', '滑坡', '崩塌', '海啸'];
-    
     if (techWords.some(w => word.includes(w))) return '科技/计算机类';
     if (natureWords.some(w => word.includes(w))) return '自然/地理类';
     if (emotionWords.some(w => word.includes(w))) return '情感/品质类';
     if (disasterWords.some(w => word.includes(w))) return '灾害/天气类';
     return '其他类';
     }
-    
     // 获取相关词
     getRelatedWord(word) {
     const relatedMap = {
@@ -1439,21 +1429,18 @@ class GuessingGame {
     };
     return relatedMap[word] || '相关事物';
     }
-    
     // 获取动物类别
     getAnimalCategory(name) {
     const landAnimals = ['熊猫', '狮子', '老虎', '大象', '长颈鹿', '猴子', '兔子', '狐狸', '袋鼠', '考拉', '狼', '熊'];
     const seaAnimals = ['章鱼', '海豚', '海龟', '鲸鱼', '海星', '海胆', '螃蟹', '龙虾', '海豹', '海象', '海獭', '海牛'];
     const birdAnimals = ['企鹅', '孔雀', '蝴蝶', '鸳鸯', '海鸥', '信天翁', '老鹰', '猫头鹰', '凤凰'];
     const insectAnimals = ['蝴蝶', '蜜蜂', '蚂蚁', '蜻蜓', '蜘蛛', '蚕', '蝉', '萤火虫'];
-    
     if (landAnimals.some(a => name.includes(a))) return '陆地';
     if (seaAnimals.some(a => name.includes(a))) return '海洋';
     if (birdAnimals.some(a => name.includes(a))) return '鸟类';
     if (insectAnimals.some(a => name.includes(a))) return '昆虫';
     return '其他';
     }
-    
     // 获取成语含义
     getIdiomMeaning(idiom) {
     const meaningMap = {
