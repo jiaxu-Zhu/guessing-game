@@ -272,12 +272,11 @@ def cleanup_duplicates():
     
     for dup in word_dups:
         # 保留第一个，删除后续重复
-        count = 0
+        count = [0]  # 使用列表避免 nonlocal 作用域问题
         def replace_dup(match):
-            nonlocal count
-            if match.group(1) == dup:
-                count += 1
-                if count > 1:
+            if match.group(2) == dup:
+                count[0] += 1
+                if count[0] > 1:
                     return ''  # 删除重复项
             return match.group(0)
         
@@ -289,12 +288,11 @@ def cleanup_duplicates():
     animal_dups = set([a for a in animals if animals.count(a) > 1])
     
     for dup in animal_dups:
-        count = 0
+        count = [0]  # 使用列表避免 nonlocal 作用域问题
         def replace_dup(match):
-            nonlocal count
-            if match.group(1) == dup:
-                count += 1
-                if count > 1:
+            if match.group(2) == dup:
+                count[0] += 1
+                if count[0] > 1:
                     return ''
             return match.group(0)
         
@@ -306,12 +304,11 @@ def cleanup_duplicates():
     idiom_dups = set([i for i in idioms if idioms.count(i) > 1])
     
     for dup in idiom_dups:
-        count = 0
+        count = [0]  # 使用列表避免 nonlocal 作用域问题
         def replace_dup(match):
-            nonlocal count
-            if match.group(1) == dup:
-                count += 1
-                if count > 1:
+            if match.group(2) == dup:
+                count[0] += 1
+                if count[0] > 1:
                     return ''
             return match.group(0)
         
