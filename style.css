@@ -1214,3 +1214,74 @@ body {
     0% { transform: scale(0, 0); opacity: 0.5; }
     100% { transform: scale(40, 40); opacity: 0; }
 }
+
+/* 自动进入下一题倒计时样式 */
+.auto-next-countdown {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.countdown-overlay {
+    text-align: center;
+    animation: countdownPulse 1s ease-in-out infinite;
+}
+
+.countdown-content {
+    background: linear-gradient(135deg, #ff66b2 0%, #ff3399 100%);
+    padding: 60px 80px;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(255, 102, 178, 0.6);
+    border: 5px solid #fff;
+}
+
+.countdown-number {
+    font-size: 8rem;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    line-height: 1;
+    margin-bottom: 20px;
+    animation: numberBounce 1s ease-in-out infinite;
+}
+
+.countdown-text {
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+@keyframes countdownPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes numberBounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* 响应式倒计时 */
+@media (max-width: 768px) {
+    .countdown-content {
+        padding: 40px 60px;
+    }
+    
+    .countdown-number {
+        font-size: 5rem;
+    }
+    
+    .countdown-text {
+        font-size: 1.2rem;
+    }
+}

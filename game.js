@@ -1564,6 +1564,8 @@ class GuessingGame {
     <button class="btn share-btn" onclick="game.shareResult()">
     📤 分享成绩
     </button>`);
+    // 添加倒计时和自动进入下一题功能
+    this.startAutoNextTimer();
     }
     getAnswerText() {
     switch(this.currentMode) {
@@ -1698,6 +1700,37 @@ class GuessingGame {
     closeVersionInfo() {
     const modal = document.getElementById('versionModal');
     if (modal) modal.classList.remove('active');
+    }
+    // 开始自动进入下一题的倒计时
+    startAutoNextTimer() {
+    let countdown = 5;
+    const countdownElement = document.createElement('div');
+    countdownElement.className = 'auto-next-countdown';
+    countdownElement.innerHTML = `
+    <div class="countdown-overlay">
+    <div class="countdown-content">
+    <div class="countdown-number">${countdown}</div>
+    <div class="countdown-text">秒后自动进入下一题</div>
+    </div>
+    </div>
+    `;
+    document.body.appendChild(countdownElement);
+    const timer = setInterval(() => {
+    countdown--;
+    if (countdown > 0) {
+    countdownElement.querySelector('.countdown-number').textContent = countdown;
+    } else {
+    clearInterval(timer);
+    countdownElement.remove();
+    this.restartGame();
+    }
+    }, 1000);
+    // 点击可以跳过倒计时
+    countdownElement.addEventListener('click', () => {
+    clearInterval(timer);
+    countdownElement.remove();
+    this.restartGame();
+    });
     }
     toggleTheme() {
     const currentTheme = document.documentElement.getAttribute('data-theme');
