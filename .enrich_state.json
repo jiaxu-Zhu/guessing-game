@@ -1,16 +1,5 @@
 {
-  "pending_optimizations": [
-    {
-      "type": "quality_issue",
-      "description": "质量问题：词语重复 (15个): 流星, 云朵, 沙漠, 雪花, Python...; 动物重复 (14个): 鸳鸯, 海龟, 长颈鹿, 刺猬, 蝙蝠...",
-      "timestamp": "2026-03-24T19:40:04.459380"
-    },
-    {
-      "type": "expand_idiom_bank",
-      "description": "新增10道idiom题目",
-      "timestamp": "2026-03-24T19:40:04.516151"
-    }
-  ],
-  "last_commit_version": "v1.0.657",
-  "consecutive_runs": 1
+  "pending_optimizations": [],
+  "last_commit_version": "v1.0.658",
+  "consecutive_runs": 0
 }
