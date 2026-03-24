@@ -1,16 +1,5 @@
 {
-  "pending_optimizations": [
-    {
-      "type": "quality_issue",
-      "description": "质量问题：词语重复 (15个): Python, 火山, 沙漠, Java, 云朵...; 动物重复 (14个): 刺猬, 袋鼠, 熊猫, 企鹅, 章鱼...",
-      "timestamp": "2026-03-24T17:50:04.337084"
-    },
-    {
-      "type": "expand_animal_bank",
-      "description": "新增10道animal题目",
-      "timestamp": "2026-03-24T17:50:04.363937"
-    }
-  ],
-  "last_commit_version": "v1.0.653",
-  "consecutive_runs": 1
+  "pending_optimizations": [],
+  "last_commit_version": "v1.0.654",
+  "consecutive_runs": 0
 }
