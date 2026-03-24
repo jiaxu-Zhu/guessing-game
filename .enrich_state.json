@@ -1,5 +1,16 @@
 {
-  "pending_optimizations": [],
+  "pending_optimizations": [
+    {
+      "type": "quality_issue",
+      "description": "质量问题：词语重复 (15个): JavaScript, HTML, Python, CSS, 露珠...; 动物重复 (14个): 孔雀, 熊猫, 章鱼, 蝴蝶, 海豚...",
+      "timestamp": "2026-03-22T11:20:50.294102"
+    },
+    {
+      "type": "cleanup_duplicates",
+      "description": "清理 38 个重复题目 (词语15个，动物14个，成语9个)",
+      "timestamp": "2026-03-22T11:20:50.377617"
+    }
+  ],
   "last_commit_version": "v1.0.646",
-  "consecutive_runs": 0
+  "consecutive_runs": 1
 }
