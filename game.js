@@ -1703,6 +1703,8 @@ class GuessingGame {
     }
     // 开始自动进入下一题的倒计时
     startAutoNextTimer() {
+    // 延迟 3 秒后再开始倒计时，让用户先看恭喜动画
+    setTimeout(() => {
     let countdown = 5;
     const countdownElement = document.createElement('div');
     countdownElement.className = 'auto-next-countdown';
@@ -1731,6 +1733,7 @@ class GuessingGame {
     countdownElement.remove();
     this.restartGame();
     });
+    }, 3000); // 延迟 3 秒
     }
     toggleTheme() {
     const currentTheme = document.documentElement.getAttribute('data-theme');
