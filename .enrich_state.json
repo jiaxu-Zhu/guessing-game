@@ -2,15 +2,15 @@
   "pending_optimizations": [
     {
       "type": "quality_issue",
-      "description": "质量问题：词语重复 (5个): Python, HTML, CSS, Java, JavaScript; 动物重复 (5个): 长颈鹿, 袋鼠, 熊猫, 企鹅, 考拉",
-      "timestamp": "2026-03-25T09:40:04.374891"
+      "description": "质量问题：词语重复 (5个): JavaScript, Java, CSS, HTML, Python; 动物重复 (5个): 考拉, 袋鼠, 长颈鹿, 企鹅, 熊猫",
+      "timestamp": "2026-03-25T10:00:04.276161"
     },
     {
-      "type": "expand_word_bank",
-      "description": "新增10道word题目",
-      "timestamp": "2026-03-25T09:40:04.413107"
+      "type": "expand_idiom_bank",
+      "description": "新增10道idiom题目",
+      "timestamp": "2026-03-25T10:00:04.340103"
     }
   ],
-  "last_commit_version": "v1.0.683",
+  "last_commit_version": "v1.0.684",
   "consecutive_runs": 1
 }
