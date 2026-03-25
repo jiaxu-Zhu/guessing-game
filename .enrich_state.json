@@ -1,16 +1,5 @@
 {
-  "pending_optimizations": [
-    {
-      "type": "quality_issue",
-      "description": "质量问题：成语重复 (5个): 画蛇添足, 杯弓蛇影, 守株待兔, 掩耳盗铃, 亡羊补牢",
-      "timestamp": "2026-03-25T01:50:04.282235"
-    },
-    {
-      "type": "expand_animal_bank",
-      "description": "新增10道animal题目",
-      "timestamp": "2026-03-25T01:50:04.319031"
-    }
-  ],
-  "last_commit_version": "v1.0.670",
-  "consecutive_runs": 1
+  "pending_optimizations": [],
+  "last_commit_version": "v1.0.671",
+  "consecutive_runs": 0
 }
