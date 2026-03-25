@@ -296,8 +296,8 @@ def cleanup_duplicates():
                     return ''
             return match.group(0)
         
-        # 支持有无 difficulty 两种格式
-        js = re.sub(r'(\{\s*name:\s*"([^"]+)"\s*,\s*hints:\s*\[[^\]]+\]\s*(?:,\s*difficulty:\s*"[^"]+")?\s*\},?\s*\n?)', replace_dup, js)
+        # 支持有无 difficulty 两种格式（逗号前后可能有空格）
+        js = re.sub(r'(\{\s*name:\s*"([^"]+)"\s*,\s*hints:\s*\[[^\]]+\]\s*(?:\s*,\s*difficulty:\s*"[^"]+")?\s*\},?\s*\n?)', replace_dup, js)
     
     # 清理成语重复
     idioms = re.findall(r'idiom:\s*"([^"]+)"', js)
@@ -418,8 +418,8 @@ def check_question_quality():
     # 2. 检查题目格式完整性（使用更宽松的正则）
     # 词语：{ word: "...", hint: "..." }
     word_entries = len(re.findall(r'\{\s*word:\s*"[^"]+"\s*,\s*hint:\s*"[^"]+"', js))
-    # 动物：{ name: "...", hints: [...] }
-    animal_entries = len(re.findall(r'\{\s*name:\s*"[^"]+"\s*,\s*hints:\s*\[', js))
+    # 动物：{ name: "...", hints: [...] } - 支持有无 difficulty 字段
+    animal_entries = len(re.findall(r'\{\s*name:\s*"[^"]+"\s*,\s*hints:\s*\[[^\]]*\]', js))
     # 成语：{ idiom: "...", emoji: "..." }
     idiom_entries = len(re.findall(r'\{\s*idiom:\s*"[^"]+"\s*,\s*emoji:\s*"[^"]+"', js))
     
