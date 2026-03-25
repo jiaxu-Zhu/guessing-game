@@ -1,11 +1,16 @@
 {
   "pending_optimizations": [
     {
-      "type": "expand_word_bank",
-      "description": "新增10道word题目",
-      "timestamp": "2026-03-25T06:30:03.548183"
+      "type": "quality_issue",
+      "description": "质量问题：词语重复 (5个): Python, CSS, Java, HTML, JavaScript; 动物重复 (5个): 企鹅, 长颈鹿, 考拉, 熊猫, 袋鼠",
+      "timestamp": "2026-03-25T07:00:03.709584"
+    },
+    {
+      "type": "expand_idiom_bank",
+      "description": "新增10道idiom题目",
+      "timestamp": "2026-03-25T07:00:03.731292"
     }
   ],
-  "last_commit_version": "v1.0.675",
+  "last_commit_version": "v1.0.676",
   "consecutive_runs": 1
 }
