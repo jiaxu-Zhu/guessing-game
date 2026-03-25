@@ -2,15 +2,15 @@
   "pending_optimizations": [
     {
       "type": "quality_issue",
-      "description": "质量问题：词语重复 (5个): HTML, Java, CSS, JavaScript, Python; 动物重复 (5个): 企鹅, 袋鼠, 长颈鹿, 熊猫, 考拉",
-      "timestamp": "2026-03-25T19:10:04.408631"
+      "description": "质量问题：成语重复 (5个): 掩耳盗铃, 守株待兔, 亡羊补牢, 画蛇添足, 杯弓蛇影",
+      "timestamp": "2026-03-25T19:30:04.944144"
     },
     {
-      "type": "cleanup_duplicates",
-      "description": "清理 15 个重复题目 (词语5个，动物5个，成语5个)",
-      "timestamp": "2026-03-25T19:10:04.451761"
+      "type": "expand_word_bank",
+      "description": "新增10道word题目",
+      "timestamp": "2026-03-25T19:30:05.026045"
     }
   ],
-  "last_commit_version": "v1.0.711",
+  "last_commit_version": "v1.0.712",
   "consecutive_runs": 1
 }
