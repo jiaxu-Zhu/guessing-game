@@ -1,16 +1,5 @@
 {
-  "pending_optimizations": [
-    {
-      "type": "quality_issue",
-      "description": "质量问题：词语重复 (5个): Java, Python, HTML, JavaScript, CSS; 成语重复 (5个): 守株待兔, 掩耳盗铃, 亡羊补牢, 杯弓蛇影, 画蛇添足",
-      "timestamp": "2026-03-25T00:40:03.749043"
-    },
-    {
-      "type": "cleanup_duplicates",
-      "description": "清理 10 个重复题目 (词语5个，动物0个，成语5个)",
-      "timestamp": "2026-03-25T00:40:03.769967"
-    }
-  ],
-  "last_commit_version": "v1.0.667",
-  "consecutive_runs": 1
+  "pending_optimizations": [],
+  "last_commit_version": "v1.0.668",
+  "consecutive_runs": 0
 }
