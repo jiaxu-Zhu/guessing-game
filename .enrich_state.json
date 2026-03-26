@@ -2,15 +2,15 @@
   "pending_optimizations": [
     {
       "type": "quality_issue",
-      "description": "质量问题：动物重复 (5个): 考拉, 长颈鹿, 袋鼠, 企鹅, 熊猫; 成语重复 (5个): 亡羊补牢, 掩耳盗铃, 杯弓蛇影, 画蛇添足, 守株待兔",
-      "timestamp": "2026-03-26T19:10:05.187396"
+      "description": "质量问题：动物重复 (5个): 企鹅, 袋鼠, 长颈鹿, 熊猫, 考拉",
+      "timestamp": "2026-03-26T19:30:04.046884"
     },
     {
-      "type": "cleanup_duplicates",
-      "description": "清理 10 个重复题目 (词语0个，动物5个，成语5个)",
-      "timestamp": "2026-03-26T19:10:05.231166"
+      "type": "expand_animal_bank",
+      "description": "新增10道animal题目",
+      "timestamp": "2026-03-26T19:30:04.087969"
     }
   ],
-  "last_commit_version": "v1.0.774",
+  "last_commit_version": "v1.0.775",
   "consecutive_runs": 1
 }
