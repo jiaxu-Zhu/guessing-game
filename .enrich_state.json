@@ -1,11 +1,16 @@
 {
   "pending_optimizations": [
     {
+      "type": "quality_issue",
+      "description": "质量问题：词语重复 (5个): Python, JavaScript, CSS, Java, HTML; 动物重复 (5个): 熊猫, 企鹅, 袋鼠, 长颈鹿, 考拉",
+      "timestamp": "2026-03-26T14:10:05.364054"
+    },
+    {
       "type": "expand_word_bank",
       "description": "新增10道word题目",
-      "timestamp": "2026-03-26T13:50:08.482723"
+      "timestamp": "2026-03-26T14:10:05.410402"
     }
   ],
-  "last_commit_version": "v1.0.759",
+  "last_commit_version": "v1.0.760",
   "consecutive_runs": 1
 }
