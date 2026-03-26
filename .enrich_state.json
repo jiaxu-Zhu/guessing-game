@@ -2,15 +2,15 @@
   "pending_optimizations": [
     {
       "type": "quality_issue",
-      "description": "质量问题：成语重复 (5个): 杯弓蛇影, 亡羊补牢, 画蛇添足, 掩耳盗铃, 守株待兔",
-      "timestamp": "2026-03-26T07:40:07.116215"
+      "description": "质量问题：词语重复 (5个): JavaScript, CSS, Python, HTML, Java; 成语重复 (5个): 掩耳盗铃, 画蛇添足, 杯弓蛇影, 守株待兔, 亡羊补牢",
+      "timestamp": "2026-03-26T08:00:04.347551"
     },
     {
-      "type": "expand_word_bank",
-      "description": "新增10道word题目",
-      "timestamp": "2026-03-26T07:40:07.145404"
+      "type": "expand_idiom_bank",
+      "description": "新增10道idiom题目",
+      "timestamp": "2026-03-26T08:00:04.366960"
     }
   ],
-  "last_commit_version": "v1.0.741",
+  "last_commit_version": "v1.0.742",
   "consecutive_runs": 1
 }
