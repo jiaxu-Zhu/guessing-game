@@ -1,16 +1,11 @@
 {
   "pending_optimizations": [
     {
-      "type": "quality_issue",
-      "description": "质量问题：词语重复 (5个): CSS, JavaScript, Java, HTML, Python",
-      "timestamp": "2026-03-27T00:00:06.601096"
-    },
-    {
-      "type": "expand_animal_bank",
-      "description": "新增10道animal题目",
-      "timestamp": "2026-03-27T00:00:06.620704"
+      "type": "expand_idiom_bank",
+      "description": "新增10道idiom题目",
+      "timestamp": "2026-03-27T00:20:04.922862"
     }
   ],
-  "last_commit_version": "v1.0.789",
+  "last_commit_version": "v1.0.790",
   "consecutive_runs": 1
 }
