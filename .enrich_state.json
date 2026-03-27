@@ -1,16 +1,5 @@
 {
-  "pending_optimizations": [
-    {
-      "type": "expand_animal_bank",
-      "description": "新增10道animal题目",
-      "timestamp": "2026-03-27T21:30:05.076013"
-    },
-    {
-      "type": "expand_word_bank",
-      "description": "新增10道word题目",
-      "timestamp": "2026-03-27T21:40:08.192552"
-    }
-  ],
-  "last_commit_version": "v1.0.873",
-  "consecutive_runs": 2
+  "pending_optimizations": [],
+  "last_commit_version": "v1.0.874",
+  "consecutive_runs": 0
 }
