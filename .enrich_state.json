@@ -2,15 +2,15 @@
   "pending_optimizations": [
     {
       "type": "quality_issue",
-      "description": "质量问题：词语重复 (5个): Python, HTML, CSS, Java, JavaScript",
-      "timestamp": "2026-03-27T17:40:03.386446"
+      "description": "质量问题：词语重复 (5个): JavaScript, HTML, CSS, Python, Java; 成语重复 (5个): 守株待兔, 杯弓蛇影, 亡羊补牢, 画蛇添足, 掩耳盗铃",
+      "timestamp": "2026-03-27T17:50:03.650892"
     },
     {
       "type": "expand_idiom_bank",
       "description": "新增10道idiom题目",
-      "timestamp": "2026-03-27T17:40:03.407425"
+      "timestamp": "2026-03-27T17:50:03.769808"
     }
   ],
-  "last_commit_version": "v1.0.859",
+  "last_commit_version": "v1.0.860",
   "consecutive_runs": 1
 }
