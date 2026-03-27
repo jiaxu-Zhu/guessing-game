@@ -1,11 +1,16 @@
 {
   "pending_optimizations": [
     {
-      "type": "expand_word_bank",
-      "description": "新增10道word题目",
-      "timestamp": "2026-03-27T13:30:04.179033"
+      "type": "quality_issue",
+      "description": "质量问题：词语重复 (5个): Java, HTML, JavaScript, Python, CSS; 成语重复 (5个): 杯弓蛇影, 画蛇添足, 掩耳盗铃, 亡羊补牢, 守株待兔",
+      "timestamp": "2026-03-27T13:40:03.270137"
+    },
+    {
+      "type": "expand_animal_bank",
+      "description": "新增10道animal题目",
+      "timestamp": "2026-03-27T13:40:03.292283"
     }
   ],
-  "last_commit_version": "v1.0.841",
+  "last_commit_version": "v1.0.842",
   "consecutive_runs": 1
 }
