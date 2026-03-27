@@ -25,6 +25,11 @@ class GuessingGame {
     hint: "💡 提示：仔细阅读描述，联想相关词语",
     difficulty: 3,
     words: [
+    { word: "人工智能", hint: "AI 技术" },
+    { word: "机器学习", hint: "让计算机学习" },
+    { word: "深度学习", hint: "神经网络" },
+    { word: "大数据", hint: "海量数据" },
+    { word: "云计算", hint: "云端计算" },
     { word: "Python", hint: "一种编程语言" },
     { word: "JavaScript", hint: "网页脚本语言" },
     { word: "HTML", hint: "网页标记语言" },
