@@ -1,11 +1,16 @@
 {
   "pending_optimizations": [
     {
+      "type": "quality_issue",
+      "description": "质量问题：动物重复 (5个): 熊猫, 考拉, 袋鼠, 长颈鹿, 企鹅",
+      "timestamp": "2026-03-27T14:10:04.398654"
+    },
+    {
       "type": "expand_animal_bank",
       "description": "新增10道animal题目",
-      "timestamp": "2026-03-27T14:00:06.978793"
+      "timestamp": "2026-03-27T14:10:04.436603"
     }
   ],
-  "last_commit_version": "v1.0.844",
+  "last_commit_version": "v1.0.845",
   "consecutive_runs": 1
 }
