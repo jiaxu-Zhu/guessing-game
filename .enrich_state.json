@@ -1,11 +1,16 @@
 {
   "pending_optimizations": [
     {
+      "type": "quality_issue",
+      "description": "质量问题：成语重复 (5个): 杯弓蛇影, 掩耳盗铃, 守株待兔, 画蛇添足, 亡羊补牢",
+      "timestamp": "2026-03-27T00:40:06.421584"
+    },
+    {
       "type": "expand_idiom_bank",
       "description": "新增10道idiom题目",
-      "timestamp": "2026-03-27T00:20:04.922862"
+      "timestamp": "2026-03-27T00:40:06.452557"
     }
   ],
-  "last_commit_version": "v1.0.790",
+  "last_commit_version": "v1.0.791",
   "consecutive_runs": 1
 }
