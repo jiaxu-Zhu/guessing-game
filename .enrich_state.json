@@ -4,8 +4,13 @@
       "type": "expand_word_bank",
       "description": "新增10道word题目",
       "timestamp": "2026-03-27T21:45:16.137183"
+    },
+    {
+      "type": "expand_animal_bank",
+      "description": "新增10道animal题目",
+      "timestamp": "2026-03-27T22:00:48.285759"
     }
   ],
   "last_commit_version": "v1.0.874",
-  "consecutive_runs": 1
+  "consecutive_runs": 2
 }
