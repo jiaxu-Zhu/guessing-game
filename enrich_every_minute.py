@@ -123,32 +123,46 @@ def expand_question_bank(mode_type, count=10):
     ]
     
     if mode_type == 'word':
+        # 检查现有题目，避免重复
+        existing_words = set(re.findall(r'word:\s*"([^"]+)"', js))
         match = re.search(r'(words:\s*\[)', js)
         if match:
             insert_pos = match.end()
             for word, hint in word_questions[:count]:
-                new_entry = '\n    { word: "' + word + '", hint: "' + hint + '" },'
-                js = js[:insert_pos] + new_entry + js[insert_pos:]
-                insert_pos += len(new_entry)
+                if word not in existing_words:  # 只新增不重复的题目
+                    new_entry = '\n    { word: "' + word + '", hint: "' + hint + '" },'
+                    js = js[:insert_pos] + new_entry + js[insert_pos:]
+                    insert_pos += len(new_entry)
+                    existing_words.add(word)
     
     elif mode_type == 'animal':
+        # 检查现有题目，避免重复
+        existing_animals = set(re.findall(r'name:\s*"([^"]+)"', js))
+        game_modes = ['数字猜猜乐', '词语猜猜猜', '动物猜猜看', '成语猜猜乐']
+        existing_animals = existing_animals - set(game_modes)  # 排除游戏模式
         match = re.search(r'(animals:\s*\[)', js)
         if match:
             insert_pos = match.end()
             for name, hints in animal_questions[:count]:
-                hints_str = ', '.join(['"' + h + '"' for h in hints])
-                new_entry = '\n    { name: "' + name + '", hints: [' + hints_str + '] },'
-                js = js[:insert_pos] + new_entry + js[insert_pos:]
-                insert_pos += len(new_entry)
+                if name not in existing_animals:  # 只新增不重复的题目
+                    hints_str = ', '.join(['"' + h + '"' for h in hints])
+                    new_entry = '\n    { name: "' + name + '", hints: [' + hints_str + '] },'
+                    js = js[:insert_pos] + new_entry + js[insert_pos:]
+                    insert_pos += len(new_entry)
+                    existing_animals.add(name)
     
     elif mode_type == 'idiom':
+        # 检查现有题目，避免重复
+        existing_idioms = set(re.findall(r'idiom:\s*"([^"]+)"', js))
         match = re.search(r'(idioms:\s*\[)', js)
         if match:
             insert_pos = match.end()
             for idiom, emoji in idiom_questions[:count]:
-                new_entry = '\n    { idiom: "' + idiom + '", emoji: "' + emoji + '" },'
-                js = js[:insert_pos] + new_entry + js[insert_pos:]
-                insert_pos += len(new_entry)
+                if idiom not in existing_idioms:  # 只新增不重复的题目
+                    new_entry = '\n    { idiom: "' + idiom + '", emoji: "' + emoji + '" },'
+                    js = js[:insert_pos] + new_entry + js[insert_pos:]
+                    insert_pos += len(new_entry)
+                    existing_idioms.add(idiom)
     
     with open("game.js", "w", encoding="utf-8") as f:
         f.write(js)
@@ -211,7 +225,10 @@ def choose_quick_optimization(features):
     
     # 🔍 优先处理重复题目问题
     words = re.findall(r'word:\s*"([^"]+)"', js)
-    animals = re.findall(r'name:\s*"([^"]+)"', js)
+    # 排除游戏模式名称
+    all_names = re.findall(r'name:\s*"([^"]+)"', js)
+    game_modes = ['数字猜猜乐', '词语猜猜猜', '动物猜猜看', '成语猜猜乐', 'emoji 猜猜乐', '食物猜猜乐', '电影猜猜乐', '国家猜猜乐']
+    animals = [name for name in all_names if name not in game_modes]
     idioms = re.findall(r'idiom:\s*"([^"]+)"', js)
     
     word_duplicates = list(set([w for w in words if words.count(w) > 1]))
@@ -284,7 +301,10 @@ def cleanup_duplicates():
         js = re.sub(r'(\{\s*word:\s*"([^"]+)"\s*,\s*hint:\s*"[^"]+"\s*(?:,\s*difficulty:\s*"[^"]+")?\s*\},?\s*\n?)', replace_dup, js)
     
     # 清理动物重复
-    animals = re.findall(r'name:\s*"([^"]+)"', js)
+    # 排除游戏模式名称
+    all_names = re.findall(r'name:\s*"([^"]+)"', js)
+    game_modes = ['数字猜猜乐', '词语猜猜猜', '动物猜猜看', '成语猜猜乐', 'emoji 猜猜乐', '食物猜猜乐', '电影猜猜乐', '国家猜猜乐']
+    animals = [name for name in all_names if name not in game_modes]
     animal_dups = set([a for a in animals if animals.count(a) > 1])
     
     for dup in animal_dups:
@@ -401,7 +421,10 @@ def check_question_quality():
     
     # 1. 检查重复题目
     words = re.findall(r'word:\s*"([^"]+)"', js)
-    animals = re.findall(r'name:\s*"([^"]+)"', js)
+    # 排除游戏模式名称
+    all_names = re.findall(r'name:\s*"([^"]+)"', js)
+    game_modes = ['数字猜猜乐', '词语猜猜猜', '动物猜猜看', '成语猜猜乐', 'emoji 猜猜乐', '食物猜猜乐', '电影猜猜乐', '国家猜猜乐']
+    animals = [name for name in all_names if name not in game_modes]
     idioms = re.findall(r'idiom:\s*"([^"]+)"', js)
     
     word_duplicates = list(set([w for w in words if words.count(w) > 1]))
