@@ -1,5 +1,16 @@
 {
-  "pending_optimizations": [],
-  "last_commit_version": "v1.0.913",
-  "consecutive_runs": 0
+  "pending_optimizations": [
+    {
+      "type": "expand_word_bank",
+      "description": "新增10道word题目",
+      "timestamp": "2026-03-28T13:40:07.546651"
+    },
+    {
+      "type": "expand_idiom_bank",
+      "description": "新增10道idiom题目",
+      "timestamp": "2026-03-28T13:50:07.023894"
+    }
+  ],
+  "last_commit_version": "v1.0.914",
+  "consecutive_runs": 2
 }
