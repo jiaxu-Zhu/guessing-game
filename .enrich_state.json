@@ -3,14 +3,14 @@
     {
       "type": "expand_animal_bank",
       "description": "新增10道animal题目",
-      "timestamp": "2026-03-28T04:20:06.541720"
+      "timestamp": "2026-03-28T04:41:20.159212"
     },
     {
-      "type": "expand_idiom_bank",
-      "description": "新增10道idiom题目",
-      "timestamp": "2026-03-28T04:30:06.867796"
+      "type": "expand_word_bank",
+      "description": "新增10道word题目",
+      "timestamp": "2026-03-28T04:50:08.731320"
     }
   ],
-  "last_commit_version": "v1.0.888",
+  "last_commit_version": "v1.0.890",
   "consecutive_runs": 2
 }
