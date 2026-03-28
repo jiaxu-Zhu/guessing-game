@@ -1,16 +1,16 @@
 {
   "pending_optimizations": [
     {
-      "type": "expand_word_bank",
-      "description": "新增10道word题目",
-      "timestamp": "2026-03-28T00:20:09.193142"
+      "type": "expand_animal_bank",
+      "description": "新增10道animal题目",
+      "timestamp": "2026-03-28T00:40:07.701259"
     },
     {
-      "type": "expand_word_bank",
-      "description": "新增10道word题目",
-      "timestamp": "2026-03-28T00:26:46.229471"
+      "type": "expand_animal_bank",
+      "description": "新增10道animal题目",
+      "timestamp": "2026-03-28T00:50:11.852646"
     }
   ],
-  "last_commit_version": "v1.0.879",
+  "last_commit_version": "v1.0.880",
   "consecutive_runs": 2
 }
