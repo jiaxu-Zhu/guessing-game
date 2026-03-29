@@ -1,16 +1,16 @@
 {
   "pending_optimizations": [
     {
-      "type": "expand_idiom_bank",
-      "description": "新增10道idiom题目",
-      "timestamp": "2026-03-29T05:02:23.015588"
+      "type": "expand_animal_bank",
+      "description": "新增10道animal题目",
+      "timestamp": "2026-03-29T05:21:17.394415"
     },
     {
       "type": "expand_idiom_bank",
       "description": "新增10道idiom题目",
-      "timestamp": "2026-03-29T05:10:06.950036"
+      "timestamp": "2026-03-29T05:30:07.375357"
     }
   ],
-  "last_commit_version": "v1.0.952",
+  "last_commit_version": "v1.0.953",
   "consecutive_runs": 2
 }
