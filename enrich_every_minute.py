@@ -319,6 +319,9 @@ def expand_question_bank(mode_type, count=10):
                     js = js[:insert_pos] + new_entry + js[insert_pos:]
                     insert_pos += len(new_entry)
                     existing_words.add(word)
+        else:
+            print(f"⚠️ 未找到 words 数组，跳过扩充")
+            return f"未找到{mode_type}题库"
     
     elif mode_type == 'animal':
         # 检查现有题目，避免重复
@@ -335,6 +338,9 @@ def expand_question_bank(mode_type, count=10):
                     js = js[:insert_pos] + new_entry + js[insert_pos:]
                     insert_pos += len(new_entry)
                     existing_animals.add(name)
+        else:
+            print(f"⚠️ 未找到 animals 数组，跳过扩充")
+            return f"未找到{mode_type}题库"
     
     elif mode_type == 'idiom':
         # 检查现有题目，避免重复
@@ -348,6 +354,9 @@ def expand_question_bank(mode_type, count=10):
                     js = js[:insert_pos] + new_entry + js[insert_pos:]
                     insert_pos += len(new_entry)
                     existing_idioms.add(idiom)
+        else:
+            print(f"⚠️ 未找到 idioms 数组，跳过扩充")
+            return f"未找到{mode_type}题库"
     
     with open("game.js", "w", encoding="utf-8") as f:
         f.write(js)
