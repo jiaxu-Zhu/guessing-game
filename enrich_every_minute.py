@@ -94,79 +94,80 @@ def analyze_game_features():
 
 def expand_question_bank(mode_type, count=10):
     """🎯 自动扩充题目库"""
-    with open("game.js", "r", encoding="utf-8") as f:
-        js = f.read()
-    
-    # 题目数据
-    word_questions = [
-        ("Python", "一种编程语言"),
-        ("JavaScript", "网页脚本语言"),
-        ("HTML", "网页标记语言"),
-        ("CSS", "样式表语言"),
-        ("Java", "面向对象编程语言"),
-        ("人工智能", "AI 技术"),
-        ("机器学习", "让计算机学习"),
-        ("深度学习", "神经网络"),
-        ("大数据", "海量数据"),
-        ("云计算", "云端计算"),
-        ("物联网", "万物互联"),
-        ("区块链", "分布式账本"),
-        ("虚拟现实", "VR 技术"),
-        ("增强现实", "AR 技术"),
-        ("5G 通信", "第五代移动通信"),
-        ("量子计算", "量子比特"),
-        ("网络安全", "保护信息安全"),
-        ("数据库", "存储数据"),
-        ("算法", "解决问题的步骤"),
-        ("编程", "编写代码"),
-        ("前端", "用户界面"),
-        ("后端", "服务器逻辑"),
-        ("全栈", "前后端都会"),
-        ("移动端", "手机应用"),
-        ("桌面端", "电脑应用"),
-        ("操作系统", "管理系统资源"),
-        ("编译器", "代码翻译"),
-        ("调试", "查找错误"),
-        ("测试", "验证功能"),
-        ("部署", "上线发布"),
-        ("版本控制", "代码管理"),
-        ("开源", "开放源代码"),
-        ("框架", "开发工具集"),
-        ("库", "代码集合"),
-        ("API", "应用程序接口"),
-        ("服务器", "提供服务"),
-        ("客户端", "使用服务"),
-        ("网络", "连接设备"),
-        ("协议", "通信规则"),
-        ("加密", "保护数据"),
-        ("解密", "还原数据"),
-        ("密码", "安全验证"),
-        ("认证", "身份验证"),
-        ("授权", "权限管理"),
-        ("日志", "记录信息"),
-        ("监控", "实时观察"),
-        ("性能", "运行效率"),
-        ("优化", "改进提升"),
-        ("重构", "改善代码"),
-        ("文档", "说明材料"),
-        ("注释", "代码说明"),
-        ("变量", "存储数据"),
-        ("函数", "代码块"),
-        ("类", "对象模板"),
-        ("对象", "实例"),
-        ("继承", "子类继承父类"),
-        ("封装", "隐藏实现"),
-        ("多态", "多种形态"),
-        ("接口", "定义规范"),
-        ("抽象", "提取共性"),
-        ("模块", "功能单元"),
-        ("包", "模块集合"),
-        ("依赖", "依赖关系"),
-        ("配置", "设置参数"),
-        ("环境", "运行环境"),
-    ]
-    
-    animal_questions = [
+    try:
+        with open("game.js", "r", encoding="utf-8") as f:
+            js = f.read()
+        
+        # 题目数据
+        word_questions = [
+            ("Python", "一种编程语言"),
+            ("JavaScript", "网页脚本语言"),
+            ("HTML", "网页标记语言"),
+            ("CSS", "样式表语言"),
+            ("Java", "面向对象编程语言"),
+            ("人工智能", "AI 技术"),
+            ("机器学习", "让计算机学习"),
+            ("深度学习", "神经网络"),
+            ("大数据", "海量数据"),
+            ("云计算", "云端计算"),
+            ("物联网", "万物互联"),
+            ("区块链", "分布式账本"),
+            ("虚拟现实", "VR 技术"),
+            ("增强现实", "AR 技术"),
+            ("5G 通信", "第五代移动通信"),
+            ("量子计算", "量子比特"),
+            ("网络安全", "保护信息安全"),
+            ("数据库", "存储数据"),
+            ("算法", "解决问题的步骤"),
+            ("编程", "编写代码"),
+            ("前端", "用户界面"),
+            ("后端", "服务器逻辑"),
+            ("全栈", "前后端都会"),
+            ("移动端", "手机应用"),
+            ("桌面端", "电脑应用"),
+            ("操作系统", "管理系统资源"),
+            ("编译器", "代码翻译"),
+            ("调试", "查找错误"),
+            ("测试", "验证功能"),
+            ("部署", "上线发布"),
+            ("版本控制", "代码管理"),
+            ("开源", "开放源代码"),
+            ("框架", "开发工具集"),
+            ("库", "代码集合"),
+            ("API", "应用程序接口"),
+            ("服务器", "提供服务"),
+            ("客户端", "使用服务"),
+            ("网络", "连接设备"),
+            ("协议", "通信规则"),
+            ("加密", "保护数据"),
+            ("解密", "还原数据"),
+            ("密码", "安全验证"),
+            ("认证", "身份验证"),
+            ("授权", "权限管理"),
+            ("日志", "记录信息"),
+            ("监控", "实时观察"),
+            ("性能", "运行效率"),
+            ("优化", "改进提升"),
+            ("重构", "改善代码"),
+            ("文档", "说明材料"),
+            ("注释", "代码说明"),
+            ("变量", "存储数据"),
+            ("函数", "代码块"),
+            ("类", "对象模板"),
+            ("对象", "实例"),
+            ("继承", "子类继承父类"),
+            ("封装", "隐藏实现"),
+            ("多态", "多种形态"),
+            ("接口", "定义规范"),
+            ("抽象", "提取共性"),
+            ("模块", "功能单元"),
+            ("包", "模块集合"),
+            ("依赖", "依赖关系"),
+            ("配置", "设置参数"),
+            ("环境", "运行环境"),
+        ]
+        
+        animal_questions = [
 ("熊猫", ["国宝", "黑白", "竹子"]),
 ("长颈鹿", ["脖子长", "斑点", "很高"]),
 ("企鹅", ["南极", "不会飞", "游泳"]),
@@ -240,128 +241,136 @@ def expand_question_bank(mode_type, count=10):
 ("蜂鸟", ["最小鸟", "悬停", "吸蜜"]),
     ]
     
-    idiom_questions = [
-("画蛇添足", "🐍🦶"),
-("守株待兔", "🌳🐇"),
-("亡羊补牢", "🐑🔧"),
-("掩耳盗铃", "👂🔔"),
-("杯弓蛇影", "🍷🐍"),
-("一箭双雕", "🏹🦅"),
-("三心二意", "❤️❤️❤️"),
-("四面楚歌", "🎵🎵🎵🎵"),
-("五光十色", "🌈✨"),
-("六神无主", "😰😰"),
-("七上八下", "⬆️⬇️"),
-("八仙过海", "🧚🧚🧚🧚"),
-("九牛一毛", "🐄🐄🐄🐄"),
-("十全十美", "💯✨"),
-("百发百中", "🎯🎯"),
-("千军万马", "🐎🐎🐎🐎"),
-("万无一失", "✅💯"),
-("一心一意", "❤️🎯"),
-("二话不说", "🤐⚡"),
-("三言两语", "💬💬"),
-("四分五裂", "💔💔"),
-("五湖四海", "🌊🌊"),
-("六六大顺", "6️⃣6️⃣"),
-("七嘴八舌", "👄👄👄👄"),
-("九死一生", "☠️✅"),
-("百里挑一", "1️⃣💯"),
-("千变万化", "🔄🔄"),
-("万众一心", "👥❤️"),
-("画龙点睛", "🐉👁️"),
-("锦上添花", "🌸✨"),
-("雪中送炭", "❄️🔥"),
-("水落石出", "💧🪨"),
-("风起云涌", "💨☁️"),
-("日新月异", "🆕🌙"),
-("天翻地覆", "🌍🔄"),
-("人山人海", "👥👥👥👥"),
-("车水马龙", "🚗💧🐎"),
-("门庭若市", "🚪🏪"),
-("鸟语花香", "🐦🌸"),
-("花好月圆", "🌸🌕"),
-("龙飞凤舞", "🐉🦚"),
-("虎背熊腰", "🐯🐻"),
-("狼吞虎咽", "🐺🐯"),
-("鸡飞狗跳", "🐔🐕"),
-("马到成功", "🐎✅"),
-("牛刀小试", "🐄🔪"),
-("羊入虎口", "🐑🐯"),
-("兔死狐悲", "🐰🦊"),
-("龙马精神", "🐉🐎"),
-("蛇蝎心肠", "🐍🦂"),
-("鼠目寸光", "🐭👁️"),
-("猪狗不如", "🐷🐕"),
-("鹤立鸡群", "🦩🐔"),
-("鱼目混珠", "🐟🔮"),
-("蚕食鲸吞", "🐛🐋"),
-("螳臂当车", "🦗🚗"),
-("蛛丝马迹", "🕸️🐎"),
-("井底之蛙", "🕳️🐸"),
-("瓮中捉鳖", "🏺🐢"),
-("草木皆兵", "🌿🪖"),
-("风声鹤唳", "💨🦢"),
-("金蝉脱壳", "🦗🐚"),
-("飞蛾扑火", "🦋🔥"),
-("蜻蜓点水", "🪰💧"),
-    ]
-    
-    if mode_type == 'word':
-        # 检查现有题目，避免重复
-        existing_words = set(re.findall(r'word:\s*"([^"]+)"', js))
-        match = re.search(r'(words:\s*\[)', js)
-        if match:
-            insert_pos = match.end()
-            for word, hint in word_questions[:count]:
-                if word not in existing_words:  # 只新增不重复的题目
-                    new_entry = '\n    { word: "' + word + '", hint: "' + hint + '" },'
-                    js = js[:insert_pos] + new_entry + js[insert_pos:]
-                    insert_pos += len(new_entry)
-                    existing_words.add(word)
+        idiom_questions = [
+    ("画蛇添足", "🐍🦶"),
+    ("守株待兔", "🌳🐇"),
+    ("亡羊补牢", "🐑🔧"),
+    ("掩耳盗铃", "👂🔔"),
+    ("杯弓蛇影", "🍷🐍"),
+    ("一箭双雕", "🏹🦅"),
+    ("三心二意", "❤️❤️❤️"),
+    ("四面楚歌", "🎵🎵🎵🎵"),
+    ("五光十色", "🌈✨"),
+    ("六神无主", "😰😰"),
+    ("七上八下", "⬆️⬇️"),
+    ("八仙过海", "🧚🧚🧚🧚"),
+    ("九牛一毛", "🐄🐄🐄🐄"),
+    ("十全十美", "💯✨"),
+    ("百发百中", "🎯🎯"),
+    ("千军万马", "🐎🐎🐎🐎"),
+    ("万无一失", "✅💯"),
+    ("一心一意", "❤️🎯"),
+    ("二话不说", "🤐⚡"),
+    ("三言两语", "💬💬"),
+    ("四分五裂", "💔💔"),
+    ("五湖四海", "🌊🌊"),
+    ("六六大顺", "6️⃣6️⃣"),
+    ("七嘴八舌", "👄👄👄👄"),
+    ("九死一生", "☠️✅"),
+    ("百里挑一", "1️⃣💯"),
+    ("千变万化", "🔄🔄"),
+    ("万众一心", "👥❤️"),
+    ("画龙点睛", "🐉👁️"),
+    ("锦上添花", "🌸✨"),
+    ("雪中送炭", "❄️🔥"),
+    ("水落石出", "💧🪨"),
+    ("风起云涌", "💨☁️"),
+    ("日新月异", "🆕🌙"),
+    ("天翻地覆", "🌍🔄"),
+    ("人山人海", "👥👥👥👥"),
+    ("车水马龙", "🚗💧🐎"),
+    ("门庭若市", "🚪🏪"),
+    ("鸟语花香", "🐦🌸"),
+    ("花好月圆", "🌸🌕"),
+    ("龙飞凤舞", "🐉🦚"),
+    ("虎背熊腰", "🐯🐻"),
+    ("狼吞虎咽", "🐺🐯"),
+    ("鸡飞狗跳", "🐔🐕"),
+    ("马到成功", "🐎✅"),
+    ("牛刀小试", "🐄🔪"),
+    ("羊入虎口", "🐑🐯"),
+    ("兔死狐悲", "🐰🦊"),
+    ("龙马精神", "🐉🐎"),
+    ("蛇蝎心肠", "🐍🦂"),
+    ("鼠目寸光", "🐭👁️"),
+    ("猪狗不如", "🐷🐕"),
+    ("鹤立鸡群", "🦩🐔"),
+    ("鱼目混珠", "🐟🔮"),
+    ("蚕食鲸吞", "🐛🐋"),
+    ("螳臂当车", "🦗🚗"),
+    ("蛛丝马迹", "🕸️🐎"),
+    ("井底之蛙", "🕳️🐸"),
+    ("瓮中捉鳖", "🏺🐢"),
+    ("草木皆兵", "🌿🪖"),
+    ("风声鹤唳", "💨🦢"),
+    ("金蝉脱壳", "🦗🐚"),
+    ("飞蛾扑火", "🦋🔥"),
+    ("蜻蜓点水", "🪰💧"),
+        ]
+        
+        if mode_type == 'word':
+            # 检查现有题目，避免重复
+            existing_words = set(re.findall(r'word:\s*"([^"]+)"', js))
+            match = re.search(r'(words:\s*\[)', js)
+            if match:
+                insert_pos = match.end()
+                for word, hint in word_questions[:count]:
+                    if word not in existing_words:  # 只新增不重复的题目
+                        new_entry = '\n    { word: "' + word + '", hint: "' + hint + '" },'
+                        js = js[:insert_pos] + new_entry + js[insert_pos:]
+                        insert_pos += len(new_entry)
+                        existing_words.add(word)
+            else:
+                print(f"⚠️ 未找到 words 数组，跳过扩充")
+                return f"未找到{mode_type}题库"
+        
+        elif mode_type == 'animal':
+            # 检查现有题目，避免重复
+            existing_animals = set(re.findall(r'name:\s*"([^"]+)"', js))
+            game_modes = ['数字猜猜乐', '词语猜猜猜', '动物猜猜看', '成语猜猜乐']
+            existing_animals = existing_animals - set(game_modes)  # 排除游戏模式
+            match = re.search(r'(animals:\s*\[)', js)
+            if match:
+                insert_pos = match.end()
+                for name, hints in animal_questions[:count]:
+                    if name not in existing_animals:  # 只新增不重复的题目
+                        hints_str = ', '.join(['"' + h + '"' for h in hints])
+                        new_entry = '\n    { name: "' + name + '", hints: [' + hints_str + '] },'
+                        js = js[:insert_pos] + new_entry + js[insert_pos:]
+                        insert_pos += len(new_entry)
+                        existing_animals.add(name)
+            else:
+                print(f"⚠️ 未找到 animals 数组，跳过扩充")
+                return f"未找到{mode_type}题库"
+        
+        elif mode_type == 'idiom':
+            # 检查现有题目，避免重复
+            existing_idioms = set(re.findall(r'idiom:\s*"([^"]+)"', js))
+            match = re.search(r'(idioms:\s*\[)', js)
+            if match:
+                insert_pos = match.end()
+                for idiom, emoji in idiom_questions[:count]:
+                    if idiom not in existing_idioms:  # 只新增不重复的题目
+                        new_entry = '\n    { idiom: "' + idiom + '", emoji: "' + emoji + '" },'
+                        js = js[:insert_pos] + new_entry + js[insert_pos:]
+                        insert_pos += len(new_entry)
+                        existing_idioms.add(idiom)
+            else:
+                print(f"⚠️ 未找到 idioms 数组，跳过扩充")
+                return f"未找到{mode_type}题库"
+        
         else:
-            print(f"⚠️ 未找到 words 数组，跳过扩充")
-            return f"未找到{mode_type}题库"
+            print(f"⚠️ 未知的题目类型：{mode_type}")
+            return f"未知类型：{mode_type}"
+        
+        with open("game.js", "w", encoding="utf-8") as f:
+            f.write(js)
+        
+        return f"新增{count}道{mode_type}题目"
     
-    elif mode_type == 'animal':
-        # 检查现有题目，避免重复
-        existing_animals = set(re.findall(r'name:\s*"([^"]+)"', js))
-        game_modes = ['数字猜猜乐', '词语猜猜猜', '动物猜猜看', '成语猜猜乐']
-        existing_animals = existing_animals - set(game_modes)  # 排除游戏模式
-        match = re.search(r'(animals:\s*\[)', js)
-        if match:
-            insert_pos = match.end()
-            for name, hints in animal_questions[:count]:
-                if name not in existing_animals:  # 只新增不重复的题目
-                    hints_str = ', '.join(['"' + h + '"' for h in hints])
-                    new_entry = '\n    { name: "' + name + '", hints: [' + hints_str + '] },'
-                    js = js[:insert_pos] + new_entry + js[insert_pos:]
-                    insert_pos += len(new_entry)
-                    existing_animals.add(name)
-        else:
-            print(f"⚠️ 未找到 animals 数组，跳过扩充")
-            return f"未找到{mode_type}题库"
-    
-    elif mode_type == 'idiom':
-        # 检查现有题目，避免重复
-        existing_idioms = set(re.findall(r'idiom:\s*"([^"]+)"', js))
-        match = re.search(r'(idioms:\s*\[)', js)
-        if match:
-            insert_pos = match.end()
-            for idiom, emoji in idiom_questions[:count]:
-                if idiom not in existing_idioms:  # 只新增不重复的题目
-                    new_entry = '\n    { idiom: "' + idiom + '", emoji: "' + emoji + '" },'
-                    js = js[:insert_pos] + new_entry + js[insert_pos:]
-                    insert_pos += len(new_entry)
-                    existing_idioms.add(idiom)
-        else:
-            print(f"⚠️ 未找到 idioms 数组，跳过扩充")
-            return f"未找到{mode_type}题库"
-    
-    with open("game.js", "w", encoding="utf-8") as f:
-        f.write(js)
-    
-    return f"新增{count}道{mode_type}题目"
+    except Exception as e:
+        print(f"⚠️ 扩充题目库失败：{e}")
+        return f"扩充失败：{e}"
 
 def enhance_hints_quality():
     """💡 优化提示趣味性"""
@@ -604,7 +613,8 @@ def apply_quick_optimization(opt_type):
                 f.write(css)
             return "添加按钮过渡效果"
     
-    return None
+    # 未知优化类型，返回提示信息
+    return f"未知优化类型：{opt_type}"
 
 def check_question_quality():
     """🔍 检查题目质量"""
